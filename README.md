@@ -2,7 +2,7 @@
 > DreamBuild - Build Your Dream Computer
 
 ## Team Members
-> Bryan Palma
+> Bryan Palma \
 > Travis Truong
 
 ## Description

@@ -44,83 +44,72 @@ Table of Contents
 ## 1. Introduction
 
 ### 1.1 Document Purpose
-Describe the purpose of the SRS and its intended audience.
 
 ### 1.2 Product Scope
-Identify the product whose software requirements are specified in this document, including the revision or release number. Explain what the product that is covered by this SRS will do, particularly if this SRS describes only part of the system or a single subsystem. 
-Provide a short description of the software being specified and its purpose, including relevant benefits, objectives, and goals. Relate the software to corporate goals or business strategies. If a separate vision and scope document is available, refer to it rather than duplicating its contents here.
 
 ### 1.3 Definitions, Acronyms and Abbreviations                                                                                                                                                                          |
 
 ### 1.4 References
-List any other documents or Web addresses to which this SRS refers. These may include user interface style guides, contracts, standards, system requirements specifications, use case documents, or a vision and scope document. Provide enough information so that the reader could access a copy of each reference, including title, author, version number, date, and source or location.
 
 ### 1.5 Document Overview
-Describe what the rest of the document contains and how it is organized.
 
 ## 2. Product Overview
-This section should describe the general factors that affect the product and its requirements. This section does not state specific requirements. Instead, it provides a background for those requirements, which are defined in detail in Section 3, and makes them easier to understand.
+DreamBuild is a web-based app that allows customers to access prebuilt computers or choose parts to build their own, all provided by builders. Customers can also leave revies and builders can also reply back. Builders can also look at statistics of what PC builds or parts are popular with customers.
 
 ### 2.1 Product Functions
-Summarize the major functions the product must perform or must let the user perform. Details will be provided in Section 3, so only a high level summary (such as a bullet list) is needed here. Organize the functions to make them understandable to any reader of the SRS. A picture of the major groups of related requirements and how they relate, such as a top level data flow diagram or object class diagram, is often effective.
+DreamBuild is a web-based app that provides a service for customers that allows customers to get the exact desktop or laptop they want. Customers are able to create and login into their account along with modifying their laptop to buy prebuilt computers from builders or laptops or let them choose each part for their desktop or laptop and have a builder either build it for them or let the customer build it if they choose. Customers should also be able to provide reviews. Builders are allowed to provide a DIY service or prebuilt to users, check user reviews, and reply to reviews.
 
 ### 2.2 Product Constraints
-This subsection should provide a general description of any other items that will limit the developer’s options. These may include:  
-
-* Interfaces to users, other applications or hardware.  
-* Quality of service constraints.  
-* Standards compliance.  
-* Constraints around design or implementation.
+From when this SRS is made, this program should able to be run on a computer with Java JDK 21. Given that the assignment is due at the beginning of December, there also could be feature cuts due to time constraints.
   
 ### 2.3 User Characteristics
-Identify the various user classes that you anticipate will use this product. User classes may be differentiated based on frequency of use, subset of product functions used, technical expertise, security or privilege levels, educational level, or experience. Describe the pertinent characteristics of each user class. Certain requirements may pertain only to certain user classes. Distinguish the most important user classes for this product from those who are less important to satisfy.
+Users should know how to use a web browser before using this application. Users with basic computer hardware knowledge should be a expert within using this software after a few times.
 
 ### 2.4 Assumptions and Dependencies
-List any assumed factors (as opposed to known facts) that could affect the requirements stated in the SRS. These could include third-party or commercial components that you plan to use, issues around the development or operating environment, or constraints. The project could be affected if these assumptions are incorrect, are not shared, or change. Also identify any dependencies the project has on external factors, such as software components that you intend to reuse from another project, unless they are already documented elsewhere (for example, in the vision and scope document or the project plan).
+Java will be used and the app will depend on Spring and Spring Boot. The app will be developed in VS Code or VS Codium. Aditionally, there should also be a API that lets user access computer parts and their specifications.
 
 ## 3. Requirements
 
 ### 3.1 Functional Requirements 
-This section specifies the software product's requirements. Specify all of the software requirements to a level of detail sufficient to enable designers to design a software system to satisfy those requirements, and to enable testers to test that the software system satisfies those requirements.
-
-The specific requirements should:
-* Be uniquely identifiable.
-* State the subject of the requirement (e.g., system, software, etc.) and what shall be done.
-* Optionally state the conditions and constraints, if any.
-* Describe every input (stimulus) into the software system, every output (response) from the software system, and all functions performed by the software system in response to an input or in support of an output.
-* Be verifiable (e.g., the requirement realization can be proven to the customer's satisfaction)
-* Conform to agreed upon syntax, keywords, and terms.
+- The builder shall be able to be registered to the app via a registration form. Additionally, a builder can modify this profile. Lastly, the builder can remove themself from the from the server if needed.
+- The builder shall let customers either pick from a prebuilt laptop or PC or let users access a menu that allows the user to pick different parts for a laptop or PC, all based on availability. 
+- The builder shall also be able to contact customers in case the customer has any questions or concerns. Additionally, the builder should be able to manage the inventory of computer parts in stock and have a newsletter that users can subscribe to for new items, updated stock and sales. Lastly, the builder should also be able to give a option if for the chosen parts that the customer picked for if they want to build the PC themselves or if the builder builds it for a extra service charge.
+- The builder shall be able to view the statisitcs of what customers prefer, such as seeing which prebuilt machine most customers are buying. Additionally, the builder shall also be able to see the statistics of what parts are more commonly selected when users want to build the PC or machine themselves.
+- The builder shall be able to respond to a customer's review if a customer leaves either a positive or negative review.
 
 #### 3.1.1 User interfaces
-Define the software components for which a user interface is needed. Describe the logical characteristics of each interface between the software product and the users. This may include sample screen images, any GUI standards or product family style guides that are to be followed, screen layout constraints, standard buttons and functions (e.g., help) that will appear on every screen, keyboard shortcuts, error message display standards, and so on. Details of the user interface design should be documented in a separate user interface specification.
-
-Could be further divided into Usability and Convenience requirements.
+The web app's interfave shall be webpages using HTML, CSS, and JavaScript.
 
 #### 3.1.2 Hardware interfaces
-Describe the logical and physical characteristics of each interface between the software product and the hardware components of the system. This may include the supported device types, the nature of the data and control interactions between the software and the hardware, and communication protocols to be used.
+Devices that have access to any web browser. This can range from either a Chromium-based web browser (Chrome, Edge, Brave, Vivaldi), Gecko Engine based web browser (Firefox, Librewolf, Floorp, Zen), Apple's Safari, or any mobile browser.
 
 #### 3.1.3 Software interfaces
-Describe the connections between this product and other specific software components (name and version), including databases, operating systems, tools, libraries, and integrated commercial components. Identify the data items or messages coming into the system and going out and describe the purpose of each. Describe the services needed and the nature of communications. Refer to documents that describe detailed application programming interface protocols. Identify data that will be shared across software components. If the data sharing mechanism must be implemented in a specific way (for example, use of a global data area in a multitasking operating system), specify this as an implementation constraint.
+- Java jdk 21
+- PostgreSQL 17
+- SpringBoot 3.4.5
 
 ### 3.2 Non Functional Requirements 
 
 #### 3.2.1 Performance
-If there are performance requirements for the product under various circumstances, state them here and explain their rationale, to help the developers understand the intent and make suitable design choices. Specify the timing relationships for real time systems. Make such requirements as specific as possible. You may need to state performance requirements for individual functional requirements or features.
+- NFR0: The DreamBuild system will consume less than 100 MB of memory
+- NFR1: The novice user will be able to add and manage produce a DIY or Prebuilt computer in less than 5 minutes.
+- NFR2: The expert user will be able to add and manage produce a DIY or Prebuilt computer in less than 1 minute.
+
 
 #### 3.2.2 Security
-Specify any requirements regarding security or privacy issues surrounding use of the product or protection of the data used or created by the product. Define any user identity authentication requirements. Refer to any external policies or regulations containing security issues that affect the product. Define any security or privacy certifications that must be satisfied.
+- NFR3: The system is available only through login and password.
 
 #### 3.2.3 Reliability
-Specify the factors required to establish the required reliability of the software system at time of delivery.
+
 
 #### 3.2.4 Availability
-Specify the factors required to guarantee a defined availability level for the entire system such as checkpoint, recovery, and restart.
+- NFR4: DreamBuild will be up 24/7. The only time the website will be down is around midnight EST when the app needs a update.
 
 #### 3.2.5 Compliance
-Specify the requirements derived from existing standards or regulations
+- NFR5: DreamBuild shall not go beyond what CSC340 teaches
 
 #### 3.2.6 Cost
-Specify monetary cost of the software product.
+- NFR6: Zero dollars is expected to be spent.
 
 #### 3.2.7 Deadline
-Specify schedule for delivery of the software product.
+- NFR7: The final product must be delivered by December 2025.

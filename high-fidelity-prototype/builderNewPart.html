@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!--Header of html for about page. Imports Bootstrap 5.3.8 CSS and local style.css-->
+<!--Header of html for about page. Imports Bulma CSS and local style.css-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,23 +40,50 @@
   </div>
 </nav>
 
+<h1 class="title">
+      Search for part online
+    </h1>
 <form class="box">
   <div class="field">
-    <label class="label">Email</label>
+    <label class="label">Type part name here</label>
     <div class="control">
-      <input class="input" type="email" placeholder="e.g. alex@example.com" />
+      <input class="input" type="email" placeholder="e.g. AMD Radeon RX 9070 XT" />
     </div>
+  </div>
+
+
+
+  <button class="button">Add</button>
+</form>
+
+<h1 class="title">
+      Manually add part
+    </h1>
+<form class="box">
+  <div class="field">
+    <label class="label">Type of Part</label>
+    <div class="select">
+  <select>
+    <option>CPU</option>
+    <option>GPU</option>
+    <option>RAM</option>
+    <option>Storage</option>
+    <option>Cases</option>
+    <option>Cooling (CPU Cooler/Fans)</option>
+  </select>
+</div>
   </div>
 
   <div class="field">
-    <label class="label">Password</label>
+    <label class="label">Name of Part</label>
     <div class="control">
-      <input class="input" type="password" placeholder="********" />
+      <input class="input" type="password" placeholder="e.g. AMD Radeon RX 9070 XT" />
     </div>
   </div>
 
-  <button class="button is-primary">Sign in</button>
+  <button class="button">Add</button>
 </form>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

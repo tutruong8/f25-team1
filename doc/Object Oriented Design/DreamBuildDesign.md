@@ -60,6 +60,6 @@ Upon logging in a prompt to will appear allowing the user to opt in or out of mo
 A customer may write a review for the PC/part that they received. They will be able to rate the service 1-5.
 
 ## 3. UML Class Diagram
-![UML Class Diagram](https://github.com/csc340-uncg/f25-team1/blob/main/doc/Object%20Oriented%20Design/UML$20class.png)
+![UML Class Diagram](https://github.com/csc340-uncg/f25-team1/blob/main/doc/Object%20Oriented%20Design/UML%20class.png)
 ## 4. Database Schema
 ![Database Schema](https://github.com/tutruong8/f25-team1/blob/main/doc/Object%20Oriented%20Design/DatabaseSchema.png)

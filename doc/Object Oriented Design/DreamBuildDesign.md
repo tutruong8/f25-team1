@@ -29,7 +29,7 @@ DreamBuild is a web-based app that allows customers to access prebuilt computers
 
 ## 2. Use Cases
 ### 2.1 Use Case Model
-![Use Case Model](https://github.com/tutruong8/f25-team1/blob/main/doc/Object-Oriented-Design/UseCaseDiagram.png)
+![Use Case Model](https://github.com/tutruong8/f25-team1/blob/main/doc/Object%20Oriented%20Design/UseCaseDiagram.png)
 
 ### 2.2 Use Case Descriptions
 
@@ -60,6 +60,6 @@ Upon selecting a box, a customer shall be able to subscribe for the box using a 
 A customer may write a review for a box they subscribed to. They will be able to rate the box based on freshness and delivery.
 
 ## 3. UML Class Diagram
-![UML Class Diagram](https://github.com/csc340-uncg/f25-team0/blob/main/doc/Object-Oriented-Design/class-diagram.png)
+![UML Class Diagram](https://github.com/csc340-uncg/f25-team0/blob/main/doc/Object%20Oriented%20Design/class-diagram.png)
 ## 4. Database Schema
-![Database Schema](https://github.com/tutruong8/f25-team1/blob/main/doc/Object-Oriented-Design/DatabaseSchema.png)
+![Database Schema](https://github.com/tutruong8/f25-team1/blob/main/doc/Object%20Oriented%20Design/DatabaseSchema.png)

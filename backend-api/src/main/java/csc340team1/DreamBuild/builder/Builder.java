@@ -1,10 +1,15 @@
 package csc340team1.DreamBuild.builder;
 
 import java.util.*;
+
+import org.springframework.boot.autoconfigure.info.ProjectInfoProperties.Build;
+
 import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import csc340team1.DreamBuild.pc_part.PCPart;
+import csc340team1.DreamBuild.computerbuild.Computer;
 
 @Entity
 @Table(name = "builders")
@@ -25,6 +30,16 @@ public class Builder {
     
     @Column(nullable=false)
     private String address;
+
+
+    @OneToMany(mappedBy = "builder", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("builder")
+    private List<PCPart> parts = new ArrayList<>(); 
+
+    @OneToMany(mappedBy = "builder", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("builder")
+    private List<Computer> builds = new ArrayList<>();
+
 
     public Builder(){}
 
@@ -78,5 +93,11 @@ public class Builder {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public List<PCPart> getParts() { return parts; }
+    public void setParts(List<PCPart> parts) { this.parts = parts; }
+
+    public List<Computer> getBuilds() { return builds; }
+    public void setBuilds(List<Computer> builds) { this.builds = builds; }
 
 }

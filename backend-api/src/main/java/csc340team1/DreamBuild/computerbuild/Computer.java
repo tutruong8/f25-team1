@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import csc340team1.DreamBuild.builder.Builder;
 import csc340team1.DreamBuild.pc_part.PCPart;
+import csc340team1.DreamBuild.review.Review;
 
 
 
@@ -37,6 +38,12 @@ public class Computer {
     @JoinColumn(name = "builder_id")
     @JsonIgnore
     private Builder builder;
+
+
+    @ManyToOne
+    @JoinColumn(name = "review_id")
+    @JsonIgnore
+    private Review review;
 
     @ManyToOne @JoinColumn(name = "cpu_id") private PCPart cpu;
     @ManyToOne @JoinColumn(name = "gpu_id") private PCPart gpu;

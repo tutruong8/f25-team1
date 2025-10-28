@@ -1,13 +1,9 @@
 package csc340team1.DreamBuild.review;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMax;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotNull;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.time.LocalDateTime;
-import csc340team1.DreamBuild.customer.Customer;
-//import csc340team1.DreamBuild.computerBuild.Computer;
+import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import csc340team1.DreamBuild.builder.Builder;
+import csc340team1.DreamBuild.computerbuild.Computer;
 
 @Entity
 @Table(name = "reviews")
@@ -16,87 +12,57 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-    @JsonIgnoreProperties({ "reviews" })
-    private Customer customer;
+    @Column(nullable = false)
+    private int rating;
 
-    // unresolved for rn
-
-    // @ManyToOne
-    // @JoinColumn(name = "computer", nullable = false)
-    // @JsonIgnoreProperties("reviews")
-    // private Computer computer;
-
-    @DecimalMin("1.0")
-    @DecimalMax("5.0")
-    private Double overallRating;
-
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String comment;
 
-    @NotNull
+    @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @Column(columnDefinition = "TEXT")
-    private String builderResponse;
+    @ManyToOne
+    @JoinColumn(name = "builder_id", nullable = false)
+    @JsonIgnoreProperties("reviews")
+    private Builder builder;
 
-    private LocalDateTime builderResponseDate;
+    @ManyToOne
+    @JoinColumn(name = "computer_id", nullable = false)
+    @JsonIgnoreProperties("reviews")
+    private Computer computer;
 
-    public Long getId() {
-        return id;
-    }
+    //Constructors
+    public Review() {}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Double getOverallRating() {
-        return overallRating;
-    }
-
-    public void setOverallRating(Double overallRating) {
-        this.overallRating = overallRating;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
+    public Review(int rating, String comment, Builder builder, Computer computer) {
+        this.rating = rating;
         this.comment = comment;
+        this.builder = builder;
+        this.computer = computer;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
+    //Getters and Setters
+    //ID
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
+    //Rating
+    public int getRating() { return rating; }
+    public void setRating(int rating) { this.rating = rating; }
 
-    public String getBuilderResponse() {
-        return builderResponse;
-    }
+    //Comment
+    public String getComment() { return comment; }
+    public void setComment(String comment) { this.comment = comment; }
 
-    public void setBuilderResponse(String builderResponse) {
-        this.builderResponse = builderResponse;
-    }
+    //Time created
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 
-    public LocalDateTime getBuilderResponseDate() {
-        return builderResponseDate;
-    }
+    //Builder
+    public Builder getBuilder() { return builder; }
+    public void setBuilder(Builder builder) { this.builder = builder; }
 
-    public void setBuilderResponseDate(LocalDateTime builderResponseDate) {
-        this.builderResponseDate = builderResponseDate;
-    }
-
+    //Computer
+    public Computer getComputer() { return computer; }
+    public void setComputer(Computer computer) { this.computer = computer;}
 }

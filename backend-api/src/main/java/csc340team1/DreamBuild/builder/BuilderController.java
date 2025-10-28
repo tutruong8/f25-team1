@@ -19,53 +19,84 @@ public class BuilderController {
     @Autowired
     private BuilderService builderService;
 
-    @GetMapping("/builders")
+    @GetMapping("/builder")
+    
+    /**
+   * Endpoint to get all builders in the database
+   *
+   * @return List of all builders in the database
+   */
     public List<Builder> getAllBuilders() {
         return builderService.getAllBuilders();
     }
 
-    @GetMapping("/builders/{id}")
+    /**
+   * Endpoint to get the desired builder through ID
+   * @param id ID of the builder to get
+   * @return The builder with the wanted ID
+   */
+    @GetMapping("/builder/{id}")
     public Object getBuilderById(@PathVariable long id) {
         return builderService.getBuilderById(id);
     }
 
-    @GetMapping("/builders/name")
-    public Object getBuilderByName(@RequestParam String name) {
-        return builderService.getBuilderByName(name);
-    }
-
-    @GetMapping("/builders/email")
+    /**
+   * Endpoint to get the desired builder through email
+   * @param email Email of the builder to get
+   * @return The builder with the wanted email
+   */
+    @GetMapping("/builder/email")
     public Object getBuilderByEmail(@RequestParam String email) {
         return builderService.getBuilderByEmail(email);
     }
 
-    @GetMapping("/builders/address")
-    public Object getBuilderByAddress(@RequestParam String address) {
-        return builderService.getBuilderByAddress(address);
-    }
-
-    @PostMapping("/builders")
+    /**
+   * Endpoint to create/add a builder in the database
+   * @param builder Builder to add
+   * @return added builder
+   */
+    @PostMapping("/builder")
     public Builder createBuilder(@RequestBody Builder builder) {
         return builderService.createBuilder(builder);
     }
 
-    @PutMapping("/builders/{id}")
+    /**
+   * Endpoint to update a builder in the database
+   * @param id ID of the builder to update
+   * @param updatedBuilder Builder with updated information
+   * @return updated builder
+   */
+    @PutMapping("/builder/{id}")
     public Builder updateBuilder(@PathVariable Long id, @RequestBody Builder updatedBuilder) {
         return builderService.updateBuilder(id, updatedBuilder);
     }
 
-    @DeleteMapping("/builders/{id}")
+    /**
+   * Endpoint to delete a builder in the database
+   * @param id ID of the builder to delete
+   * @return list of builders in database after deletion
+   */
+    @DeleteMapping("/builder/{id}")
     public Object deleteBuilder(@PathVariable Long id) {
         builderService.deleteBuilder(id);
         return builderService.getAllBuilders();
     }
 
-    @PostMapping("/animal/write")
+    /**
+   * Endpoint to write builder in JSON file
+   * @param builder Builder to write
+   * @return success message (empty string if successful)
+   */
+    @PostMapping("/builder/write")
     public Object writeJson(@RequestBody Builder builder) throws IOException {
         return builderService.writeJson(builder);
     }
 
-    @PostMapping("/animal/read")
+    /**
+   * Endpoint read Builder JSON file contents
+   * @return contents in JSON
+   */
+    @PostMapping("/builder/read")
     public Object readJson() throws IOException {
         return builderService.readJson();
     }

@@ -62,6 +62,8 @@ public class ComputerService {
             computer.setPrice(updatedComputer.getPrice());
             computer.setQuantity(updatedComputer.getQuantity());
             computer.setBuilder(updatedComputer.getBuilder());
+            computer.setCustomer(updatedComputer.getCustomer());
+            computer.setReview(updatedComputer.getReview());
             computer.setCpu(updatedComputer.getCpu());
             computer.setGpu(updatedComputer.getGpu());
             computer.setMobo(updatedComputer.getMobo());

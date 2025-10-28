@@ -1,7 +1,13 @@
 package csc340team1.DreamBuild.customer;
 
 import jakarta.persistence.*;
+
+import java.util.*;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import csc340team1.DreamBuild.review.Review;
+import csc340team1.DreamBuild.computerbuild.Computer;
 
 @Entity
 @Table(name = "customers")
@@ -19,9 +25,13 @@ public class Customer {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("customer")
-    // private List<NewsLetter> newsLetters = new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("customer")
+    private List<Computer> computers = new ArrayList<>();
 
     @Column
     private String address;

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import csc340team1.DreamBuild.pc_part.PCPart;
 import csc340team1.DreamBuild.computerbuild.Computer;
+import csc340team1.DreamBuild.review.Review;
 
 @Entity
 @Table(name = "builders")
@@ -37,6 +38,11 @@ public class Builder {
     @OneToMany(mappedBy = "builder", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("builder")
     private List<Computer> builds = new ArrayList<>();
+
+    @OneToMany(mappedBy = "builder", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("builder")
+    private List<Review> reviews = new ArrayList<>();
+
 
     //Constructors
     public Builder(){}

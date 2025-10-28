@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import csc340team1.DreamBuild.builder.Builder;
 import csc340team1.DreamBuild.pc_part.PCPart;
 import csc340team1.DreamBuild.review.Review;
-
+import csc340team1.DreamBuild.customer.Customer;
 
 
 @Entity
@@ -45,6 +45,11 @@ public class Computer {
     @JsonIgnore
     private Review review;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    @JsonIgnore
+    private Customer customer;
+
     @ManyToOne @JoinColumn(name = "cpu_id") private PCPart cpu;
     @ManyToOne @JoinColumn(name = "gpu_id") private PCPart gpu;
     @ManyToOne @JoinColumn(name = "mobo_id") private PCPart mobo;
@@ -54,12 +59,13 @@ public class Computer {
     //Constructors
     public Computer() {}
 
-    public Computer(String description, boolean isPrebuilt, BigDecimal price, Integer quantity, Builder builder, PCPart cpu, PCPart gpu, PCPart mobo, PCPart pcCase, PCPart fan) {
+    public Computer(String description, boolean isPrebuilt, BigDecimal price, Integer quantity, Builder builder, Customer customer, PCPart cpu, PCPart gpu, PCPart mobo, PCPart pcCase, PCPart fan) {
         this.description = description;
         this.isPrebuilt = isPrebuilt;
         this.price = price;
         this.quantity = quantity;
         this.builder = builder;
+        this.customer = customer;
         this.cpu = cpu;
         this.gpu = gpu;
         this.mobo = mobo;
@@ -96,6 +102,14 @@ public class Computer {
     //Builder
     public Builder getBuilder() { return builder; }
     public void setBuilder(Builder builder) { this.builder = builder; }
+
+    //Customer
+    public Customer getCustomer() { return customer; }
+    public void setCustomer(Customer customer) { this.customer = customer; }
+
+    //Review
+    public Review getReview() { return review; }
+    public void setReview(Review review) { this.review = review; }
 
     //PC Parts
     //CPU

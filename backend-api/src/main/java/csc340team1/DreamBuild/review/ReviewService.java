@@ -39,6 +39,7 @@ public class ReviewService {
         return reviewRepo.findById(id).map(review -> {
             review.setRating(updatedReview.getRating());
             review.setComment(updatedReview.getComment());
+            review.setCustomer(updatedReview.getCustomer());
             review.setBuilder(updatedReview.getBuilder());
             review.setComputer(updatedReview.getComputer());
             return reviewRepo.save(review);

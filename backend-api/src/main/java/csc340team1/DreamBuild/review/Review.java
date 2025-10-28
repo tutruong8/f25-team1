@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import csc340team1.DreamBuild.builder.Builder;
+import csc340team1.DreamBuild.customer.Customer;
 import csc340team1.DreamBuild.computerbuild.Computer;
 
 @Entity
@@ -31,13 +32,19 @@ public class Review {
     @JsonIgnoreProperties("reviews")
     private Computer computer;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnoreProperties("reviews")
+    private Customer customer;
+
     //Constructors
     public Review() {}
 
-    public Review(int rating, String comment, Builder builder, Computer computer) {
+    public Review(int rating, String comment, Builder builder, Customer customer, Computer computer) {
         this.rating = rating;
         this.comment = comment;
         this.builder = builder;
+        this.customer = customer;
         this.computer = computer;
     }
 
@@ -61,6 +68,10 @@ public class Review {
     //Builder
     public Builder getBuilder() { return builder; }
     public void setBuilder(Builder builder) { this.builder = builder; }
+
+    //Customer
+    public Customer getCustomer() { return customer; }
+    public void setCustomer(Customer customer) { this.customer = customer; }
 
     //Computer
     public Computer getComputer() { return computer; }

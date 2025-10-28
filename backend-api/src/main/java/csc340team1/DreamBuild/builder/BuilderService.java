@@ -13,30 +13,47 @@ public class BuilderService {
     @Autowired
     private BuilderRepo builderRepo;
 
+    /**
+   * Method to get all builders in the database
+   * @return list of builders in database
+   */
     public List<Builder> getAllBuilders() {
         return builderRepo.findAll();
     }
 
+    /**
+   * Method to get builder by ID in the database
+   * @param id ID of the builder to get
+   * @return builder with the specified ID
+   */
     public Object getBuilderById(@PathVariable long id) {
         return builderRepo.findById(id);
     }
 
-    public Object getBuilderByName(@PathVariable String name) {
-        return builderRepo.findByName(name);
-    }
-
+    /**
+   * Method to get builder by email in the database
+   * @param email email of the builder to get
+   * @return builder with the specified email
+   */
     public Object getBuilderByEmail(@PathVariable String email) {
         return builderRepo.findByEmail(email);
     }
 
-    public Object getBuilderByAddress(@PathVariable String address) {
-        return builderRepo.findByAddress(address);
-    }
-
+    /**
+   * Method to create new builder in the database
+   * @param builder Builder to create
+   * @return created builder
+   */
     public Builder createBuilder(Builder builder) {
         return builderRepo.save(builder);
     }
 
+    /**
+   * Method to update builder in the database
+   * @param id ID of the builder to update
+   * @param updatedBuilder updated builder information
+   * @return updated builder
+   */
     public Builder updateBuilder(Long id, Builder updatedBuilder) {
         return builderRepo.findById(id).map(builder -> {
             builder.setName(updatedBuilder.getName());
@@ -50,12 +67,16 @@ public class BuilderService {
         });
     }
 
+    /**
+   * Method to delete builder in the database
+   * @param id ID of the builder to delete
+   */
     public void deleteBuilder(Long id) {
         builderRepo.deleteById(id);
     }
     
     /**
-   * Method to write animal to JSON file
+   * Method to write builder to JSON file
    * @param builder Builder to write
    */
     public String writeJson(Builder builder) throws IOException {

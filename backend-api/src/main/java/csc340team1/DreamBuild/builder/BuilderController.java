@@ -12,22 +12,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
-@RestController
+@Controller
 public class BuilderController {
     @Autowired
     private BuilderService builderService;
 
-    @GetMapping("/builder")
-    
     /**
    * Endpoint to get all builders in the database
    *
    * @return List of all builders in the database
    */
-    public List<Builder> getAllBuilders() {
-        return builderService.getAllBuilders();
+    @GetMapping("/builder")
+    public String getAllBuilders(Model model) {
+        model.addAttribute("builders", builderService.getAllBuilders());
+        model.addAttribute("title", "Builders");
+        return "builder-list";
     }
 
     /**
@@ -36,8 +38,10 @@ public class BuilderController {
    * @return The builder with the wanted ID
    */
     @GetMapping("/builder/{id}")
-    public Object getBuilderById(@PathVariable long id) {
-        return builderService.getBuilderById(id);
+    public Object getBuilderById(@PathVariable long id, Model model) {
+        model.addAttribute("builder", builderService.getBuilderById(id));
+        model.addAttribute("title", "Builder Details");
+        return "builder-detail";
     }
 
     /**
@@ -46,18 +50,37 @@ public class BuilderController {
    * @return The builder with the wanted email
    */
     @GetMapping("/builder/email")
-    public Object getBuilderByEmail(@RequestParam String email) {
-        return builderService.getBuilderByEmail(email);
+    public Object getBuilderByEmail(@RequestParam String email, Model model) {
+        model.addAttribute("builder", builderService.getBuilderByEmail(email));
+        model.addAttribute("title", "Builder Details");
+        return "builder-detail";
     }
 
+
+    @GetMapping("/builder/new")
+    public Object builderSignUp(Model model){
+        Builder newBuilder = new Builder();
+        model.addAttribute("builder", newBuilder);
+        model.addAttribute("title", "Sign Up Builder");
+        return "builder-signup";
+    }
     /**
    * Endpoint to create/add a builder in the database
    * @param builder Builder to add
    * @return added builder
    */
     @PostMapping("/builder")
-    public Builder createBuilder(@RequestBody Builder builder) {
-        return builderService.createBuilder(builder);
+    public Object createBuilder(@RequestBody Builder builder) {
+        Builder newBuilder = builderService.createBuilder(builder);
+        return "redirect:/builder/" + newBuilder.getId();
+    }
+
+
+    @GetMapping("/builder/update/{id}")
+    public Object updateBuilderForm(@PathVariable Long id, Model model){
+        model.addAttribute("builder", builderService.getBuilderById(id));
+        model.addAttribute("title", "Update Builder: " + id);
+        return "builder-update";
     }
 
     /**
@@ -66,9 +89,10 @@ public class BuilderController {
    * @param updatedBuilder Builder with updated information
    * @return updated builder
    */
-    @PutMapping("/builder/{id}")
-    public Builder updateBuilder(@PathVariable Long id, @RequestBody Builder updatedBuilder) {
-        return builderService.updateBuilder(id, updatedBuilder);
+    @PostMapping("/builder/{id}")
+    public Object updateBuilder(@PathVariable Long id, Builder builder) {
+        builderService.updateBuilder(id, builder);
+        return "redirect:/builder/" + id;
     }
 
     /**
@@ -76,10 +100,10 @@ public class BuilderController {
    * @param id ID of the builder to delete
    * @return list of builders in database after deletion
    */
-    @DeleteMapping("/builder/{id}")
+    @GetMapping("/builder/delete/{id}")
     public Object deleteBuilder(@PathVariable Long id) {
         builderService.deleteBuilder(id);
-        return builderService.getAllBuilders();
+        return "redirect:/builder";
     }
 
     /**

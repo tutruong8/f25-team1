@@ -16,22 +16,22 @@
                     <div class="column is-5-desktop">
                         <div class="box">
                             <h1 class="title has-text-centered">Provider Register</h1>
-                            <form>
+                            <form id="new-builder" action="/builder" method="post">
                                 <div class="field">
                                     <label class="label">Full Name</label>
-                                    <input class="input" type="text" placeholder="Enter full name">
+                                    <input class="input" id="name" name="name" type="text" placeholder="Enter full name">
                                 </div>
                                 <div class="field">
                                     <label class="label">Email</label>
-                                    <input class="input" type="email" placeholder="Enter email">
+                                    <input class="input" id="email" name="email" type="text" placeholder="Enter email">
+                                </div>
+                                <div class="field">
+                                    <label class="label">Address</label>
+                                    <input class="input" id="address" name="address" type="text" placeholder="Enter address">
                                 </div>
                                 <div class="field">
                                     <label class="label">Password</label>
-                                    <input class="input" type="password" placeholder="Enter password">
-                                </div>
-                                <div class="field">
-                                    <label class="label">Confirm Password</label>
-                                    <input class="input" type="password" placeholder="Confirm password">
+                                    <input class="input" id="password" name="password" type="text" placeholder="Enter Password">
                                 </div>
                                 <div class="field">
                                     <button class="button is-success is-fullwidth">Register</button>

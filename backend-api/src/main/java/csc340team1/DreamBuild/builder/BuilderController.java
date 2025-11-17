@@ -41,7 +41,7 @@ public class BuilderController {
     public Object getBuilderById(@PathVariable long id, Model model) {
         model.addAttribute("builder", builderService.getBuilderById(id));
         model.addAttribute("title", "Builder Details");
-        return "builder-detail";
+        return "builder/builderProfile";
     }
 
     /**
@@ -62,7 +62,7 @@ public class BuilderController {
         Builder newBuilder = new Builder();
         model.addAttribute("builder", newBuilder);
         model.addAttribute("title", "Sign Up Builder");
-        return "builder-signup";
+        return "ProviderSignUp";
     }
     /**
    * Endpoint to create/add a builder in the database
@@ -70,7 +70,7 @@ public class BuilderController {
    * @return added builder
    */
     @PostMapping("/builder")
-    public Object createBuilder(@RequestBody Builder builder) {
+    public Object createBuilder(Builder builder) {
         Builder newBuilder = builderService.createBuilder(builder);
         return "redirect:/builder/" + newBuilder.getId();
     }
@@ -80,7 +80,7 @@ public class BuilderController {
     public Object updateBuilderForm(@PathVariable Long id, Model model){
         model.addAttribute("builder", builderService.getBuilderById(id));
         model.addAttribute("title", "Update Builder: " + id);
-        return "builder-update";
+        return "builder/builderProfile";
     }
 
     /**

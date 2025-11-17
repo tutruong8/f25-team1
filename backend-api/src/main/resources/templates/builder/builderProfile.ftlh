@@ -28,8 +28,8 @@
   </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start" href="builderProfile.html">
-      <a class="navbar-item is-selected">
+    <div class="navbar-start">
+      <a class="navbar-item is-active" href="builderProfile.html">
         Profile
       </a>
       <a class="navbar-item" href="builderServices.html">
@@ -41,57 +41,35 @@
       <a class="navbar-item" href="builderReviews.html">
         Your Reviews
       </a>
+    </div>
   </div>
 </nav>
 
 
-<form class="box">
+<form id="updateBuilder" action="/builder/${builder.id}" method="post">
   <div class="field">
-    <label class="label">Username</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="randomuser2025 <- Current username. If you want to change it, then type in the new one here" />
+        <label class="label">Username</label>
+        <input class="input" id="name" type="text" name="name" value="${builder.name!}" placeholder="Enter new username">
     </div>
-  </div>
+
+    <div class="field">
+        <label class="label">New Password</label>
+        <input class="input" id="password" type="text" name="password" placeholder="Enter new password">
+    </div>
+
+    <div class="field">
+        <label class="label">Email</label>
+        <input class="input" id="email" type="text" name="email" value="${builder.email!}" placeholder="Enter new email">
+    </div>
+
+    <div class="field">
+        <label class="label">Address</label>
+        <input class="input" id="address" type="text" name="address" value="${builder.address!}" placeholder="Enter new address">
+    </div>
+    <div class="field">
+      <button class="button is-success">Update</button>
+    </div>
 </form>
-
-<form class="box">
-  <div class="field">
-    <label class="label">New Password</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="Enter new password here" />
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Re-enter new Password</label>
-    <div class="control">
-      <input class="input" type="password" placeholder="Re-enter new password here" />
-    </div>
-  </div>
-</form>
-
-
-<form class="box">
-  <div class="field">
-    <label class="label">Email</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="randomuser@email.com <- Current Email. If you want to change it, then type in the new one here" />
-    </div>
-  </div>
-</form>
-
-
-
-<form class="box">
-  <div class="field">
-    <label class="label">Address</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="1234 Bulder Street, Provide, State, 45678 <- Current address, if you want to change it, type a new address" />
-    </div>
-  </div>
-</form>
-
-<button class="button">Update</button>
 
 <a href="/f25-team1/high-fidelity-prototype/ProviderLogin.html" class="button">
   Log Out

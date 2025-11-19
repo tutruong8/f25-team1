@@ -25,113 +25,78 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item"  href="builderProfile.html">
+      <a class="navbar-item" href="/builder/${builder.id}">
         Profile
       </a>
-      <a class="navbar-item is-selected" href="builderServices.html">
+      <a class="navbar-item is-active" href="/builder/${builder.id}/services">
         Services
       </a>
-      <a class="navbar-item" href="statistics.html">
+      <a class="navbar-item" href="/builder/${builder.id}/customer-statistics">
         Customer Statistics
       </a>
-      <a class="navbar-item" href="builderReviews.html">
+      <a class="navbar-item" href="/builder/${builder.id}/reviews">
         Your Reviews
       </a>
+    </div>
   </div>
 </nav>
 
 <h1 class="title">
-      General Info
+      Search for part online
     </h1>
 <form class="box">
   <div class="field">
-    <div class="columns">
-  <div class="column">Type name of PC Here
-    <input class="input" type="email" placeholder="e.g. Tu's PC" />
-  </div>
-  <div class="column">Type Description Here
-    <input class="input" type="email" placeholder="e.g. Gaming and Work PC" />
-  </div>
-  <div class="column">Set Price
-    <input class="input" type="email" placeholder="e.g. $2,500" />
-  </div>
-</div>
-  </div>
-</form>
-
-<h1 class="title">
-      CPU
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of CPU</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. AMD Ryzen 7 5700X3D" />
-    </div>
-  </div>
-</form>
-
-<h1 class="title">
-      GPU
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of GPU here</label>
+    <label class="label">Type part name here</label>
     <div class="control">
       <input class="input" type="email" placeholder="e.g. AMD Radeon RX 9070 XT" />
     </div>
   </div>
-</form>
 
-<h1 class="title">
-      RAM
-    </h1>
-<form class="box">
   <div class="field">
-    <label class="label">Type name of RAM here</label>
+    <label class="label">Set Price</label>
     <div class="control">
-      <input class="input" type="email" placeholder="e.g. Corsair Vengeance 32GB RAM" />
+      <input class="input" type="password" placeholder="e.g. $1,008" />
     </div>
   </div>
-</form>
-
-<h1 class="title">
-      Storage
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of storage here</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. W.D.Black 2TB NVme 4.0" />
-    </div>
-  </div>
-</form>
-
-<h1 class="title">
-      PC Case
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of PC Case here</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. Lian Li A3" />
-    </div>
-  </div>
-</form>
-
-<h1 class="title">
-      Cooling (CPU Coolers/Fans)
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type cooling devices here. Sepearate items with columns to add multiple</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. Thermalright Phantom Spirit 120 SE, Arctic P20, Arctic P20" />
-    </div>
-  </div>
-</form>
 
   <button class="button">Add</button>
+</form>
+
+<h1 class="title">
+      Manually add part
+    </h1>
+<form class="box">
+  <div class="field">
+    <label class="label">Type of Part</label>
+    <div class="select">
+  <select>
+    <option>CPU</option>
+    <option>GPU</option>
+    <option>RAM</option>
+    <option>Storage</option>
+    <option>Cases</option>
+    <option>Cooling (CPU Cooler/Fans)</option>
+  </select>
+</div>
+  </div>
+
+  <div class="field">
+    <label class="label">Name of Part</label>
+    <div class="control">
+      <input class="input" type="password" placeholder="e.g. AMD Radeon RX 9070 XT" />
+    </div>
+  </div>
+
+   <div class="field">
+    <label class="label">Set Price</label>
+    <div class="control">
+      <input class="input" type="password" placeholder="e.g. $1,008" />
+    </div>
+  </div>
+  <button class="button">Add</button>
+</form>
+
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 

@@ -39,7 +39,7 @@
                                 </div>
                             </form>
                             <p class="has-text-centered mt-4">
-                                Already have an account? <a href="ProviderLogin.html">Login here</a>
+                                Already have an account? <a href="/builder/existing">Login here</a>
                             </p>
                             <p class="has-text-centered">
                                 Are you a Customer? <a href="CustomerLogin.html">Login here</a>

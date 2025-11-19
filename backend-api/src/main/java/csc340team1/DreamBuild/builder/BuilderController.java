@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BuilderController {
@@ -23,7 +26,7 @@ public class BuilderController {
     /**
    * Endpoint to get all builders in the database
    *
-   * @return List of all builders in the database
+   * @return List of all builders in the databasegi
    */
     @GetMapping("/builder")
     public String getAllBuilders(Model model) {
@@ -33,9 +36,10 @@ public class BuilderController {
     }
 
     /**
-   * Endpoint to get the desired builder through ID
+   * Endpoint to get the desired builder through ID. You can view and update builder info on the same page
    * @param id ID of the builder to get
-   * @return The builder with the wanted ID
+   * @param model Model to add attributes to
+   * @return Builder profile page
    */
     @GetMapping("/builder/{id}")
     public Object getBuilderById(@PathVariable long id, Model model) {
@@ -44,19 +48,52 @@ public class BuilderController {
         return "builder/builderProfile";
     }
 
+
     /**
-   * Endpoint to get the desired builder through email
-   * @param email Email of the builder to get
-   * @return The builder with the wanted email
+   * Endpoint to get to see services of a builder through ID
+   * @param id ID of the builder to get
+   * @param model Model to add attributes to
+   * @return Builder services page
    */
-    @GetMapping("/builder/email")
-    public Object getBuilderByEmail(@RequestParam String email, Model model) {
-        model.addAttribute("builder", builderService.getBuilderByEmail(email));
-        model.addAttribute("title", "Builder Details");
-        return "builder-detail";
+    @GetMapping("/builder/{id}/services")
+    public Object getBuilderServices(@PathVariable long id, Model model) {
+        model.addAttribute("builder", builderService.getBuilderById(id));
+        model.addAttribute("title", "Builder Services");
+        return "builder/builderServices";
+    }
+
+    /**
+   * Endpoint to get to see reviews of a builder through ID
+   * @param id ID of the builder to get
+   * @param model Model to add attributes to
+   * @return Builder review page
+   */
+    @GetMapping("/builder/{id}/reviews")
+    public Object getBuilderReviews(@PathVariable long id, Model model) {
+        model.addAttribute("builder", builderService.getBuilderById(id));
+        model.addAttribute("title", "Builder Reviews");
+        return "builder/builderReviews";
+    }
+
+    /**
+   * Endpoint to get to see customer statistics of services of a builder through ID
+   * @param id ID of the builder to get
+   * @param model Model to add attributes to
+   * @return Builder review page
+   */
+    @GetMapping("/builder/{id}/customer-statistics")
+    public Object getBuilderCustomerStatistics(@PathVariable long id, Model model) {
+        model.addAttribute("builder", builderService.getBuilderById(id));
+        model.addAttribute("title", "Builder Customer Statistics");
+        return "builder/statistics";
     }
 
 
+    /**
+   * Endpoint to see signup page for a new buiilder
+   * @param model Model to add attributes to
+   * @return Builder signup page
+   */
     @GetMapping("/builder/new")
     public Object builderSignUp(Model model){
         Builder newBuilder = new Builder();
@@ -64,6 +101,19 @@ public class BuilderController {
         model.addAttribute("title", "Sign Up Builder");
         return "ProviderSignUp";
     }
+
+     /**
+   * Endpoint to see signup page for a new buiilder
+   * @param model Model to add attributes to
+   * @return Builder signup page
+   */
+    @GetMapping("/builder/existing")
+    public Object builderLogin(Model model){
+        model.addAttribute("title", "Log In Builder");
+        return "ProviderLogin";
+    }
+
+
     /**
    * Endpoint to create/add a builder in the database
    * @param builder Builder to add
@@ -76,11 +126,15 @@ public class BuilderController {
     }
 
 
-    @GetMapping("/builder/update/{id}")
-    public Object updateBuilderForm(@PathVariable Long id, Model model){
-        model.addAttribute("builder", builderService.getBuilderById(id));
-        model.addAttribute("title", "Update Builder: " + id);
-        return "builder/builderProfile";
+    @PostMapping("/builder/signin")
+    public String signin(@RequestParam String email, @RequestParam String password, HttpSession session) {
+        try {
+            Builder builder = builderService.authenticate(email, password);
+            session.setAttribute("builderId", builder.getId());
+            return "redirect:/builder/" + builder.getId() + "/services";
+        } catch (Exception e) {
+            return "redirect:/builder/signin?error";
+        }
     }
 
     /**

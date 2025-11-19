@@ -25,18 +25,19 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item"  href="builderProfile.html">
+      <a class="navbar-item" href="/builder/${builder.id}">
         Profile
       </a>
-      <a class="navbar-item" href="builderServices.html">
+      <a class="navbar-item" href="/builder/${builder.id}/services">
         Services
       </a>
-      <a class="navbar-item" href="statistics.html">
+      <a class="navbar-item" href="/builder/${builder.id}/customer-statistics">
         Customer Statistics
       </a>
-      <a class="navbar-item is-selected" href="builderReviews.html">
+      <a class="navbar-item is-active" href="/builder/${builder.id}/reviews">
         Your Reviews
       </a>
+    </div>
   </div>
 </nav>
 

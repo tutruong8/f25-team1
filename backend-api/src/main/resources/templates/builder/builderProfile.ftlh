@@ -71,7 +71,7 @@
     </div>
 </form>
 
-<a href="/f25-team1/high-fidelity-prototype/ProviderLogin.html" class="button">
+<a href="/builder/existing" class="button">
   Log Out
 </a>
 

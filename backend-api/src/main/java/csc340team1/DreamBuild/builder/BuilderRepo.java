@@ -11,7 +11,8 @@ public interface BuilderRepo extends JpaRepository<Builder, Long> {
     List<Builder> findByName(String name);
 
     @Query(value = "Select * from builders s where s.email like CONCAT('%',?1,'%')", nativeQuery = true)
-    List<Builder> findByEmail(String email);
+    Optional<Builder> findByEmail(String email);
+    boolean existsByEmail(String email);
 
     @Query(value = "Select * from builders s where s.address like CONCAT('%',?1,'%')", nativeQuery = true)
     List<Builder> findByAddress(String address);

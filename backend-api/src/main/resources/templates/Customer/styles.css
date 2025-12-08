@@ -1,0 +1,114 @@
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #2a03d48a;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding-top: 4rem;
+    /* space for navbar */
+}
+
+.sidebar.is-active {
+    left: 0;
+}
+
+.sidebar .menu {
+    padding: 1rem;
+}
+
+/* Overlay */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 900;
+}
+
+.sidebar-overlay.is-active {
+    display: block;
+}
+
+
+.top-cards .column {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Search bar */
+/* Center the search bar */
+.search-section {
+  display: flex;
+  justify-content: center;
+}
+
+.search-section .field {
+  max-width: 600px; /* keeps it from stretching too wide on desktop */
+  width: 100%;
+}
+/* Product cards */
+.product-card {
+    min-width: 200px;
+    max-width: 220px;
+    /* prevent huge cards on large screens */
+    flex: 0 0 auto;
+}
+
+/* Horizontal scrolling wrapper */
+.scrolling-wrapper {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+   
+}
+
+/* Scrollbar styling */
+.scrolling-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scrolling-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Overall container max-width for desktops */
+.container {
+    max-width: 1200px;
+}
+
+
+
+
+.scrolling-wrapper::-webkit-scrollbar-thumb {
+    background: #881f1f;
+    border-radius: 4px;
+}
+
+.product-card {
+    min-width: 200px;
+    flex: 0 0 auto;
+}
+
+/* Top section cards/buttons */
+.top-cards .card {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.top-cards .card:hover {
+    transform: scale(1.05);
+}
+
+/* Search bar spacing */
+.search-section {
+    margin: 2rem 0;
+}

@@ -54,7 +54,7 @@
 
     <div class="field">
         <label class="label">New Password</label>
-        <input class="input" id="password" type="text" name="password" placeholder="Enter new password">
+        <input class="input" id="password" type="password" name="password" placeholder="Enter new password">
     </div>
 
     <div class="field">

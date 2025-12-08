@@ -50,22 +50,6 @@ public class CustomerController {
     }
 
     
- 
- /**
-   * Endpoint to get the email of a customer in the database
-   * @param email Email of the customer to get
-   * @return The customer with the wanted email
-   */
-/**  @GetMapping("/customer/email")
-    public Object getCustomerByEmail(@RequestParam String email, Model model) {
-        if (email != null) {
-            model.addAttribute("customerList", customerService.getCustomerByEmail(email));
-            model.addAttribute("title", "Customer By Email: " + email);
-            return "customer-list";
-        } else {
-            return "redirect:/customer";
-        }
- */
 
 
  /**
@@ -119,9 +103,9 @@ public class CustomerController {
         try{
             Customer customer = customerService.authenticate(email, password);
             session.setAttribute("customerId", customer.getCustomerId());
-            return "redirect:/builder/" + customer.getCustomerId() + "/services";
+            return "redirect:/customer/" + customer.getCustomerId() + "/customerLanding";
         } catch (Exception e) {
-            return "redirect:/builder/signin?error";
+            return "redirect:/customer/signin?error";
         }
     }
     

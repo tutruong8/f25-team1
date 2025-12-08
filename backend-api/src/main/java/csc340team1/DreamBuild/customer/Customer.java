@@ -54,6 +54,10 @@ public class Customer {
         this.address = address;
     }
 
+
+    //getters and setter
+
+    //Customer ID
     public Long getCustomerId() {
         return customerId;
     }
@@ -62,6 +66,7 @@ public class Customer {
         this.customerId = customerId;
     }
 
+    //Name
     public String getName() {
         return name;
     }
@@ -70,6 +75,7 @@ public class Customer {
         this.name = name;
     }
 
+    //Email
     public String getEmail() {
         return email;
     }
@@ -78,6 +84,7 @@ public class Customer {
         this.email = email;
     }
 
+    //Password
     public String getPassword() {
         return password;
     }
@@ -86,6 +93,7 @@ public class Customer {
         this.password = password;
     }
 
+    //Address
     public String getAddress() {
         return address;
     }

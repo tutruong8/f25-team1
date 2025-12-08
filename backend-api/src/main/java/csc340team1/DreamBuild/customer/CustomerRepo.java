@@ -10,7 +10,8 @@ public interface CustomerRepo extends JpaRepository<Customer, Long> {
     List<Customer> findByName(String name);
 
     @Query(value = "Select * from customer s where s.email like CONCAT('%',?1,'%')", nativeQuery = true)
-    List<Customer> findByEmail(String email);
+    Optional<Customer> findByEmail(String email);
+    boolean existsByEmail(String email);
 
     @Query(value = "Select * from customer s where s.address like CONCAT('%',?1,'%')", nativeQuery = true)
     List<Customer> findByAddress(String address);

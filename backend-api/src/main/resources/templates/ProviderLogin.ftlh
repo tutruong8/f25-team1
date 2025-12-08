@@ -29,7 +29,7 @@
                                 <div class="field">
                                     <label class="label">Password</label>
                                     <div class="control">
-                                        <input class="input" id="password" name="password" type="text" placeholder="Enter password" required>
+                                        <input class="input" id="password" name="password" type="password" placeholder="Enter password" required>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-lock"></i>
                                         </span>

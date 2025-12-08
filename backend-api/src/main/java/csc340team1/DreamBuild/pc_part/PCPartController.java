@@ -10,13 +10,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import csc340team1.DreamBuild.builder.*;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
 public class PCPartController {
     @Autowired
     private PCPartService pcPartService;
     
+    @Autowired
+    private BuilderService builderService;
+
     /**
    * Endpoint to get all pc parts in the database
    *
@@ -57,14 +65,28 @@ public class PCPartController {
         return pcPartService.getPartsByPartType(type);
     }
 
+
+    @GetMapping("/pcpart/new")
+    public Object newPartForm(Model model) {
+        PCPart part = new PCPart();
+        model.addAttribute("part", part);
+        model.addAttribute("partTypes", PCPartType.values());
+        model.addAttribute("title", "Add New PC Part");
+        return "builder/builderNewPart";
+    }
     /**
    * Endpoint to create/add a PC part in the database
    * @param part PC part to add
    * @return added PC part
    */
     @PostMapping("/pcpart")
-    public PCPart createPart(@RequestBody PCPart part) {
-        return pcPartService.createPart(part);
+    public Object createPart(@RequestParam Long builderId, PCPart part) {
+        Builder builder = builderService.getBuilderById(builderId);
+        part.setBuilder(builder);
+
+        pcPartService.createPart(part);
+
+        return "redirect:/builder/" + builderId + "/services";
     }
 
     /**
@@ -74,7 +96,7 @@ public class PCPartController {
    * @return updated PC part
    */
     @PutMapping("/pcpart/{id}")
-    public PCPart updatePart(@PathVariable Long id, @RequestBody PCPart part) {
+    public Object updatePart(@PathVariable Long id, @RequestBody PCPart part) {
         return pcPartService.updatePart(id, part);
     }
 

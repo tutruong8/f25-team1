@@ -3,6 +3,7 @@ import java.util.*;
 import java.io.IOException;
 import java.io.File;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,8 +27,8 @@ public class BuilderService {
    * @param id ID of the builder to get
    * @return builder with the specified ID
    */
-    public Object getBuilderById(@PathVariable long id) {
-        return builderRepo.findById(id);
+    public Builder getBuilderById(long id) {
+        return builderRepo.findById(id).orElse(null);
     }
 
     /**
@@ -73,6 +74,18 @@ public class BuilderService {
    */
     public void deleteBuilder(Long id) {
         builderRepo.deleteById(id);
+    }
+
+    /**
+     * Method to authenticate a builder
+     * */
+    public Builder authenticate(String email, String password) {
+        Builder builder = builderRepo.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("Builder not found with the email you just typed! Try again."));
+        if (!builder.getPassword().equals(password)) {
+            throw new IllegalArgumentException("Invalid email or password! Try again.");
+        }
+        return builder;
     }
     
     /**

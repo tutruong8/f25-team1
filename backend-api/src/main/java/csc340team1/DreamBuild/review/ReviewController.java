@@ -3,8 +3,6 @@ package csc340team1.DreamBuild.review;
 import java.io.IOException;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,31 +10,44 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+@Controller
 public class ReviewController {
     @Autowired
     private ReviewService reviewService;
     
+    
     /**
-   * Endpoint to get all reviews in the database
-   *
-   * @return List of all reviews in the database
-   */
-    @GetMapping("/review")
-    public List<Review> getAllReviews() {
-        return reviewService.getAllReviews();
+     * Customer review page (list of reviews for a customer)
+     */
+    @GetMapping("/customer/{customerId}/reviews")
+    public String showCustomerReviews(@PathVariable Long customerId, Model model) {
+        List<Review> reviews = reviewService.getReviewByCustomerId(customerId);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("customerId", customerId);
+        return "customer/customerReview";
     }
 
-    /**
-   * Endpoint to get the desired review through ID
-   * @param id ID of the review to get
-   * @return The review with the wanted ID
-   */
-    @GetMapping("/review/{id}")
-    public Optional<Review> getReviewById(@PathVariable Long id) {
-        return reviewService.getReviewById(id);
+    @GetMapping("/builder/{builderId}/reviews")
+    public String showBuilderReviews(@PathVariable Long builderId, Model model) {
+        List<Review> reviews = reviewService.getReviewByBuilder(builderId);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("builderId", builderId);
+        return "builder/builderReviews";
+    }
+
+   /**
+     * Single review details page
+     */
+    @GetMapping("/review/{reviewId}")
+    public String getReviewDetails(Long reviewId, Model model){
+    Optional<Review> review = reviewService.getReviewById(reviewId);
+    model.addAttribute("review", review.orElse(null));
+        return "review/review-details";
     }
 
     /**

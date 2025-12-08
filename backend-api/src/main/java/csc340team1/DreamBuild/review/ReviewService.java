@@ -19,8 +19,8 @@ public class ReviewService {
         return reviewRepo.findAll();
     }
 
-    public Optional<Review> getReviewById(Long id) {
-        return reviewRepo.findById(id);
+    public List<Review> getReviewByCustomerId(Long customerId) {
+        return reviewRepo.findByCustomerId(customerId);
     }
 
      public List<Review> getReviewByBuilder(Long builderId) {
@@ -30,6 +30,11 @@ public class ReviewService {
     public List<Review> getReviewByComputer(Long computerId) {
         return reviewRepo.findByComputerId(computerId);
     }
+
+    public Optional<Review> getReviewById(Long reviewId) {
+    return reviewRepo.findById(reviewId);
+}
+
 
     public Review createReview(Review review) {
         return reviewRepo.save(review);

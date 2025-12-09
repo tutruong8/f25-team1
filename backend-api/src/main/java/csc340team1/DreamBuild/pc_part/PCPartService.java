@@ -26,8 +26,8 @@ public class PCPartService {
    * @param id ID of the PC part to get
    * @return PC part with the specified ID
    */
-    public Object getPartById(@PathVariable long id) {
-        return pcPartRepo.findById(id); 
+    public PCPart getPartById(@PathVariable long id) {
+        return pcPartRepo.findById(id).orElse(null); 
     }
 
     /**

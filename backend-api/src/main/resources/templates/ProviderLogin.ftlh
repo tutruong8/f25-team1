@@ -20,7 +20,7 @@
                                 <div class="field">
                                     <label class="label">Email</label>
                                     <div class="control">
-                                        <input class="input" id="email" name="email" type="text" placeholder="Enter email required>
+                                        <input class="input" id="email" name="email" type="text" placeholder="Enter email" required>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-user"></i>
                                         </span>
@@ -43,7 +43,7 @@
                                 Don’t have an account? <a href="/builder/new">Sign up</a>
                             </p>
                             <p class="has-text-centered">
-                                Are you a Customer? <a href="CustomerLogin.html">Login here</a>
+                                Are you a Customer? <a href="/customer/existing">Login here</a>
                             </p>
                         </div>
                     </div>

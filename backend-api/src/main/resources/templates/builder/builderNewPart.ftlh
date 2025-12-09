@@ -42,10 +42,12 @@
 </nav>
 
 <form class="box" method="post" action="/pcpart">
+  <input type="hidden" name="builderId" value="${builder.id}">
+
   <div class="field">
     <label class="label">Type of Part</label>
     <div class="select">
-      <select name="type">
+      <select name="partType">
       <#list partTypes as t>
           <option value="${t}">${t}</option>
       </#list>
@@ -70,7 +72,14 @@
   <div class="field">
     <label class="label">Set Price</label>
     <div class="control">
-      <input class="input" id="price" name="price" value="${part.price!}" type="text" placeholder="e.g. $1,008" />
+      <input class="input" id="price" name="price" value="${part.price!}" type="text" placeholder="e.g. 1008.00" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Set Quantity</label>
+    <div class="control">
+      <input class="input" id="quantity" name="quantity" value="${part.quantity!}" type="text" placeholder="e.g. 67" />
     </div>
   </div>
   <div class="field">

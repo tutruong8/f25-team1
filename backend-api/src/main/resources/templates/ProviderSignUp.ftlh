@@ -42,7 +42,7 @@
                                 Already have an account? <a href="/builder/existing">Login here</a>
                             </p>
                             <p class="has-text-centered">
-                                Are you a Customer? <a href="CustomerLogin.html">Login here</a>
+                                Are you a Customer? <a href="/customer/new">Register here</a>
                             </p>
                         </div>
                     </div>

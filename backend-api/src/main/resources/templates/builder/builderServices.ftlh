@@ -101,19 +101,30 @@
   </header>
   <div class="card-content">
     <div class="content">
+      <div class="columns">
+          <div class="column">Name</div>
+          <div class="column">Price</div>
+          <div class="column">Quantity</div>
+          <div class="column">Type</div>
+          <div class="column">Description</div>
+          <div class="column is-narrow"></div>
+      </div>
       <#list builder.parts as p>
         <div class="columns">
           <div class="column">${p.name}</div>
           <div class="column">$${p.price}</div>
           <div class="column">${p.quantity!0}</div>
-          <div class="column">${p.type}</div>
+          <div class="column">${p.partType}</div>
+          <div class="column">${p.description}</div>
+          <div class="column is-narrow">
+            <a class="button is-small is-info" 
+               href="/pcpart/${p.id}/edit?builderId=${builder.id}">
+               Edit
+            </a>
+        </div>
         </div>
       </#list>
     </div>
-    <footer class="card-footer">
-      <a href="builderNewPart.html" class="card-footer-item">Edit</a>
-      <a href="#" class="card-footer-item">Delete</a>
-    </footer>
   </div>
 </div>
   </div>

@@ -1,6 +1,7 @@
 package csc340team1.DreamBuild.pc_part;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -67,7 +68,12 @@ public class PCPartController {
 
 
     @GetMapping("/pcpart/new")
-    public Object newPartForm(Model model) {
+    public Object newPartForm(@RequestParam Long builderId, Model model) {
+        Builder builder = builderService.getBuilderById(builderId);
+
+        model.addAttribute("builder", builder);      // <-- required by navbar
+        model.addAttribute("builderId", builderId);  // <-- required for the form POST
+
         PCPart part = new PCPart();
         model.addAttribute("part", part);
         model.addAttribute("partTypes", PCPartType.values());
@@ -83,10 +89,23 @@ public class PCPartController {
     public Object createPart(@RequestParam Long builderId, PCPart part) {
         Builder builder = builderService.getBuilderById(builderId);
         part.setBuilder(builder);
-
+        part.setCreatedAt(LocalDateTime.now());
         pcPartService.createPart(part);
-
         return "redirect:/builder/" + builderId + "/services";
+    }
+
+    @GetMapping("/pcpart/{id}/edit")
+    public Object editPartForm(@PathVariable Long id, @RequestParam Long builderId, Model model) {
+        Builder builder = builderService.getBuilderById(builderId);
+
+        model.addAttribute("builder", builder);     
+        model.addAttribute("builderId", builderId);
+
+        PCPart part = pcPartService.getPartById(id);
+        model.addAttribute("part", part);
+        model.addAttribute("partTypes", PCPartType.values());
+        model.addAttribute("title", "Edit PC Part");
+        return "builder/builderUpdatePart";
     }
 
     /**
@@ -95,9 +114,12 @@ public class PCPartController {
    * @param part PC part with updated information
    * @return updated PC part
    */
-    @PutMapping("/pcpart/{id}")
-    public Object updatePart(@PathVariable Long id, @RequestBody PCPart part) {
-        return pcPartService.updatePart(id, part);
+    @PostMapping("/pcpart/{id}")
+    public Object updatePart(@PathVariable Long id, @RequestParam Long builderId, PCPart part) {
+        Builder builder = builderService.getBuilderById(builderId);
+        part.setBuilder(builder);
+        pcPartService.updatePart(id, part);
+        return "redirect:/builder/" + builderId + "/services";
     }
 
     /**

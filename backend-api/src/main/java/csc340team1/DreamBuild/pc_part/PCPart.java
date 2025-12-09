@@ -47,15 +47,10 @@ public class PCPart {
     @JsonIgnoreProperties("purchasedParts")
     private List<Customer> customers = new ArrayList<>();
 
-
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("customer")
-    private List<Customer> customersList = new ArrayList<>(); 
-
     //Constructors
     public PCPart() {}
 
-    public PCPart(String name, String description, String partType, BigDecimal price, Integer quantity, Builder builder) {
+    public PCPart(String name, String description, String partType, BigDecimal price, Integer quantity, Builder builder, LocalDateTime createdAt, List<Customer> customers) {
         this.name = name;
         this.description = description;
         this.partType = partType;
@@ -63,6 +58,7 @@ public class PCPart {
         this.quantity = quantity;
         this.builder = builder;
         this.createdAt = LocalDateTime.now();
+        this.customers = customers;
     }
 
     //Getters and setters
@@ -101,8 +97,4 @@ public class PCPart {
     //Customer
     public List<Customer> getCustomers() { return customers; }
     public void setCustomers(List<Customer> customers) { this.customers = customers; }
-}
-    //Customers List
-    public List<Customer> getCustomersList() { return customersList; }
-    public void setCustomersList(List<Customer> customersList) { this.customersList = customersList; }
 }

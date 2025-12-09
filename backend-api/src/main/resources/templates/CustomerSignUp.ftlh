@@ -16,32 +16,32 @@
                     <div class="column is-5-desktop">
                         <div class="box">
                             <h1 class="title has-text-centered">Customer Register</h1>
-                            <form>
+                            <form id = "new-customer" action="/customer" method="post">
                                 <div class="field">
                                     <label class="label">Full Name</label>
-                                    <input class="input" type="text" placeholder="Enter full name">
+                                    <input class="input" id="fullName" name="fullName" type="text" placeholder="Enter full name" required>
                                 </div>
                                 <div class="field">
                                     <label class="label">Email</label>
-                                    <input class="input" type="email" placeholder="Enter email">
+                                    <input class="input" id="email" name="email" type="email" placeholder="Enter email" required>
+                                </div>
+                                <div class="field">
+                                    <label class="label">Address</label>
+                                    <input class="input" id="address" name="address" type="text" placeholder="Enter address" required>
                                 </div>
                                 <div class="field">
                                     <label class="label">Password</label>
-                                    <input class="input" type="password" placeholder="Enter password">
-                                </div>
-                                <div class="field">
-                                    <label class="label">Confirm Password</label>
-                                    <input class="input" type="password" placeholder="Confirm password">
+                                    <input class="input" id="password" name="password" type="password" placeholder="Enter password" required>
                                 </div>
                                 <div class="field">
                                     <button class="button is-success is-fullwidth">Register</button>
                                 </div>
                             </form>
                             <p class="has-text-centered mt-4">
-                                Already have an account? <a href="CustomerLogin.html">Login here</a>
+                                Already have an account? <a href="/customer/existing">Login here</a>
                             </p>
                             <p class="has-text-centered">
-                                Are you a provider? <a href="ProviderSignUp.html">Register here</a>
+                                Are you a provider? <a href="/builder/new">Register here</a>
                             </p>
                         </div>
                     </div>

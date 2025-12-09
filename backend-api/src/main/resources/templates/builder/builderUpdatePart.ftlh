@@ -41,7 +41,7 @@
   </div>
 </nav>
 
-<form class="box" method="post" action="/pcpart">
+<form class="box" method="post" action="/pcpart/${part.id}">
   <input type="hidden" name="builderId" value="${builder.id}">
 
   <div class="field">
@@ -58,32 +58,32 @@
   <div class="field">
     <label class="label">Name of Part</label>
     <div class="control">
-      <input class="input" id="name" name="name" value="${part.name!}" type="text" placeholder="e.g. AMD Radeon RX 9070 XT" />
+      <input class="input" id="name" name="name" value="${part.name}" type="text" placeholder="e.g. AMD Radeon RX 9070 XT" />
     </div>
   </div>
 
   <div class="field">
     <label class="label">Description</label>
     <div class="control">
-      <input class="input" id="description" name="description" value="${part.description!}" type="text" placeholder="e.g. 1440p gaming" />
+      <input class="input" id="description" name="description" value="${part.description}" type="text" placeholder="e.g. 1440p gaming" />
     </div>
   </div>
 
   <div class="field">
     <label class="label">Set Price</label>
     <div class="control">
-      <input class="input" id="price" name="price" value="${part.price!}" type="text" placeholder="e.g. 1008.00" />
+      <input class="input" id="price" name="price" value="${part.price}" type="text" placeholder="e.g. 1008.00" />
     </div>
   </div>
 
   <div class="field">
     <label class="label">Set Quantity</label>
     <div class="control">
-      <input class="input" id="quantity" name="quantity" value="${part.quantity!}" type="text" placeholder="e.g. 67" />
+      <input class="input" id="quantity" name="quantity" value="${part.quantity}" type="text" placeholder="e.g. 67" />
     </div>
   </div>
   <div class="field">
-    <button class="button is-success">Add</button>
+    <button class="button is-warning">Save Changes</button>
   </div>
 </form>
 

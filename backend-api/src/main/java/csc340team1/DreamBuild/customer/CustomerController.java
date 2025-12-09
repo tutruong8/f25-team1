@@ -103,7 +103,7 @@ public class CustomerController {
         try{
             Customer customer = customerService.authenticate(email, password);
             session.setAttribute("customerId", customer.getCustomerId());
-            return "redirect:/customer/" + customer.getCustomerId() + "/customerLanding";
+            return "redirect:/customer/" + customer.getCustomerId() + "/services";
         } catch (Exception e) {
             return "redirect:/customer/signin?error";
         }

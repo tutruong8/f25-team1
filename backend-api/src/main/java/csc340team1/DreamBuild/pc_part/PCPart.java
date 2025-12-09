@@ -2,11 +2,13 @@ package csc340team1.DreamBuild.pc_part;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import csc340team1.DreamBuild.builder.Builder;
+import csc340team1.DreamBuild.customer.Customer;
 
 @Entity
 @Table(name = "pc_parts")
@@ -39,6 +41,11 @@ public class PCPart {
     @JsonIgnore
     private Builder builder;
 
+    @ManyToMany(mappedBy = "purchasedParts")
+    @JsonIgnoreProperties("purchasedParts")
+    private List<Customer> customers = new ArrayList<>();
+
+
 
     //Constructors
     public PCPart() {}
@@ -50,6 +57,7 @@ public class PCPart {
         this.price = price;
         this.quantity = quantity;
         this.builder = builder;
+        this.createdAt = LocalDateTime.now();
     }
 
     //Getters and setters
@@ -84,4 +92,8 @@ public class PCPart {
     //Builder
     public Builder getBuilder() { return builder; }
     public void setBuilder(Builder builder) { this.builder = builder; }
+
+    //Customer
+    public List<Customer> getCustomers() { return customers; }
+    public void setCustomers(List<Customer> customers) { this.customers = customers; }
 }

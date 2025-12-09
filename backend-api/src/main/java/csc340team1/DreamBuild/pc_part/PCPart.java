@@ -2,12 +2,13 @@ package csc340team1.DreamBuild.pc_part;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.*;
 
 import jakarta.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import csc340team1.DreamBuild.builder.Builder;
 import csc340team1.DreamBuild.customer.Customer;
 
@@ -42,6 +43,11 @@ public class PCPart {
     @JsonIgnore
     private Builder builder;
 
+    @ManyToMany(mappedBy = "purchasedParts")
+    @JsonIgnoreProperties("purchasedParts")
+    private List<Customer> customers = new ArrayList<>();
+
+
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("customer")
     private List<Customer> customersList = new ArrayList<>(); 
@@ -56,6 +62,7 @@ public class PCPart {
         this.price = price;
         this.quantity = quantity;
         this.builder = builder;
+        this.createdAt = LocalDateTime.now();
     }
 
     //Getters and setters
@@ -91,6 +98,10 @@ public class PCPart {
     public Builder getBuilder() { return builder; }
     public void setBuilder(Builder builder) { this.builder = builder; }
 
+    //Customer
+    public List<Customer> getCustomers() { return customers; }
+    public void setCustomers(List<Customer> customers) { this.customers = customers; }
+}
     //Customers List
     public List<Customer> getCustomersList() { return customersList; }
     public void setCustomersList(List<Customer> customersList) { this.customersList = customersList; }

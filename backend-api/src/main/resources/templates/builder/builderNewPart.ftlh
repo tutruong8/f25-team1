@@ -41,59 +41,41 @@
   </div>
 </nav>
 
-<h1 class="title">
-      Search for part online
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type part name here</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. AMD Radeon RX 9070 XT" />
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="label">Set Price</label>
-    <div class="control">
-      <input class="input" type="password" placeholder="e.g. $1,008" />
-    </div>
-  </div>
-
-  <button class="button">Add</button>
-</form>
-
-<h1 class="title">
-      Manually add part
-    </h1>
-<form class="box">
+<form class="box" method="post" action="/pcpart">
   <div class="field">
     <label class="label">Type of Part</label>
     <div class="select">
-  <select>
-    <option>CPU</option>
-    <option>GPU</option>
-    <option>RAM</option>
-    <option>Storage</option>
-    <option>Cases</option>
-    <option>Cooling (CPU Cooler/Fans)</option>
-  </select>
-</div>
+      <select name="type">
+      <#list partTypes as t>
+          <option value="${t}">${t}</option>
+      </#list>
+      </select>
+    </div>
   </div>
 
   <div class="field">
     <label class="label">Name of Part</label>
     <div class="control">
-      <input class="input" type="password" placeholder="e.g. AMD Radeon RX 9070 XT" />
+      <input class="input" id="name" name="name" value="${part.name!}" type="text" placeholder="e.g. AMD Radeon RX 9070 XT" />
     </div>
   </div>
 
-   <div class="field">
-    <label class="label">Set Price</label>
+  <div class="field">
+    <label class="label">Description</label>
     <div class="control">
-      <input class="input" type="password" placeholder="e.g. $1,008" />
+      <input class="input" id="description" name="description" value="${part.description!}" type="text" placeholder="e.g. 1440p gaming" />
     </div>
   </div>
-  <button class="button">Add</button>
+
+  <div class="field">
+    <label class="label">Set Price</label>
+    <div class="control">
+      <input class="input" id="price" name="price" value="${part.price!}" type="text" placeholder="e.g. $1,008" />
+    </div>
+  </div>
+  <div class="field">
+    <button class="button is-success">Add</button>
+  </div>
 </form>
 
 

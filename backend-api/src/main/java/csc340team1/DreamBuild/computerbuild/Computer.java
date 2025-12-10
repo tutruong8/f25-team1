@@ -33,6 +33,9 @@ public class Computer {
     @Column(nullable=false)
     private int quantity;
 
+    @Column(nullable=false)
+    private int fanCount;
+
     @ManyToOne
     @JoinColumn(name = "builder_id")
     @JsonIgnore
@@ -51,14 +54,19 @@ public class Computer {
 
     @ManyToOne @JoinColumn(name = "cpu_id") private PCPart cpu;
     @ManyToOne @JoinColumn(name = "gpu_id") private PCPart gpu;
+    @ManyToOne @JoinColumn(name = "ram_id") private PCPart ram;
+    @ManyToOne @JoinColumn(name = "storage_id") private PCPart storage;
     @ManyToOne @JoinColumn(name = "mobo_id") private PCPart mobo;
     @ManyToOne @JoinColumn(name = "case_id") private PCPart pcCase;
     @ManyToOne @JoinColumn(name = "fan_id") private PCPart fan;
+    @ManyToOne @JoinColumn(name = "cooler_id") private PCPart cooler;
+    @ManyToOne @JoinColumn(name = "psu_id") private PCPart psu;
 
     //Constructors
     public Computer() {}
 
-    public Computer(String description, boolean isPrebuilt, BigDecimal price, Integer quantity, Builder builder, Customer customer, PCPart cpu, PCPart gpu, PCPart mobo, PCPart pcCase, PCPart fan) {
+    public Computer(String description, boolean isPrebuilt, BigDecimal price, Integer quantity, Builder builder, Customer customer, Integer fanCount,
+        PCPart cpu, PCPart gpu, PCPart ram, PCPart storage, PCPart mobo, PCPart pcCase, PCPart fan, PCPart cooler, PCPart psu) {
         this.description = description;
         this.isPrebuilt = isPrebuilt;
         this.price = price;
@@ -67,11 +75,15 @@ public class Computer {
         this.customer = customer;
         this.cpu = cpu;
         this.gpu = gpu;
+        this.ram = ram;
+        this.storage = storage;
         this.mobo = mobo;
         this.pcCase = pcCase;
         this.fan = fan;
+        this.cooler = cooler;
+        this.psu = psu;
+        this.fanCount = fanCount;
     }
-
 
     //Getters and Setters
     //Computer ID
@@ -98,6 +110,10 @@ public class Computer {
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
 
+    //Fan Count
+    public int getFanCount() { return fanCount; }
+    public void setFanCount(int fanCount) { this.fanCount = fanCount; }
+
     //Builder
     public Builder getBuilder() { return builder; }
     public void setBuilder(Builder builder) { this.builder = builder; }
@@ -119,6 +135,14 @@ public class Computer {
     public PCPart getGpu() { return gpu; }
     public void setGpu(PCPart gpu) { this.gpu = gpu; }
 
+    //RAM
+    public PCPart getRam() { return ram; }
+    public void setRam(PCPart ram) { this.ram = ram; }
+
+    //Storage
+    public PCPart getStorage() { return storage; }
+    public void setStorage(PCPart storage) { this.storage = storage; }
+
     //Motherboard
     public PCPart getMobo() { return mobo; }
     public void setMobo(PCPart mobo) { this.mobo = mobo; }
@@ -130,4 +154,12 @@ public class Computer {
     //Fan
     public PCPart getFan() { return fan; }
     public void setFan(PCPart fan) { this.fan = fan; }
+
+    //CPU Cooler
+    public PCPart getCooler() { return cooler; }
+    public void setCooler(PCPart cooler) { this.cooler = cooler; }
+
+    //Power Supply Unit
+    public PCPart getPsu() { return psu; }
+    public void setPsu(PCPart psu) { this.psu = psu; }
 }

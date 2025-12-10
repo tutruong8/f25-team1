@@ -5,7 +5,11 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+@Controller
 public class ComputerController {
     @Autowired
     private ComputerService computerService;
@@ -38,6 +42,13 @@ public class ComputerController {
     @GetMapping("/computer/builder/{builderId}")
     public List<Computer> getComputersByBuilderID(@PathVariable Long builderId) {
         return computerService.getComputersByBuilderID(builderId);
+    }
+
+    @GetMapping("/computer/new")
+    public Object createComputerForm(Model model) {
+        model.addAttribute("computer", new Computer());
+        model.addAttribute("title", "Create New Computer");
+        return "builder/NewPrebuilt";
     }
 
     /**

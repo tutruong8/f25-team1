@@ -41,98 +41,129 @@
   </div>
 </nav>
 
-<h1 class="title">
-      General Info
-    </h1>
-<form class="box">
-  <div class="field">
+<form class="box" method="post" action="/computer">
+    <input type="hidden" name="builderId" value="${builder.id}">
+    <h1 class="title">General Info</h1>
     <div class="columns">
-  <div class="column">Type name of PC Here
-    <input class="input" type="email" placeholder="e.g. Tu's PC" />
-  </div>
-  <div class="column">Type Description Here
-    <input class="input" type="email" placeholder="e.g. Gaming and Work PC" />
-  </div>
-  <div class="column">Set Price
-    <input class="input" type="email" placeholder="e.g. $2,500" />
-  </div>
-</div>
-  </div>
-</form>
-
-<h1 class="title">
-      CPU
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of CPU</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. AMD Ryzen 7 5700X3D" />
+        <div class="column">
+            <label class="label">PC Name</label>
+            <input class="input" type="text" name="name" placeholder="e.g. Tu's PC" />
+        </div>
+        <div class="column">
+            <label class="label">Description</label>
+            <input class="input" type="text" name="description" placeholder="e.g. Gaming and Work PC" />
+        </div>
+        <div class="column">
+            <label class="label">Price</label>
+            <input class="input" type="text" name="price" placeholder="e.g. 2500.00" />
+        </div>
     </div>
-  </div>
-</form>
-
-<h1 class="title">
-      GPU
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of GPU here</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. AMD Radeon RX 9070 XT" />
+    <div class="field">
+        <label class="label">Image URL</label>
+        <input class="input" type="text" name="imageUrl" placeholder="https://example.com/pc.png" />
     </div>
-  </div>
-</form>
-
-<h1 class="title">
-      RAM
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of RAM here</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. Corsair Vengeance 32GB RAM" />
+    <h1 class="title">CPU</h1>
+    <div class="field">
+        <label class="label">Choose CPU</label>
+        <div class="select is-fullwidth">
+            <select name="cpuId">
+                <#list cpuParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
     </div>
-  </div>
-</form>
-
-<h1 class="title">
-      Storage
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of storage here</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. W.D.Black 2TB NVme 4.0" />
+    <h1 class="title">GPU</h1>
+    <div class="field">
+        <label class="label">Choose GPU</label>
+        <div class="select is-fullwidth">
+            <select name="gpuId">
+                <#list gpuParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
     </div>
-  </div>
-</form>
-
-<h1 class="title">
-      PC Case
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type name of PC Case here</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. Lian Li A3" />
+    <h1 class="title">RAM</h1>
+    <div class="field">
+        <label class="label">Choose RAM</label>
+        <div class="select is-fullwidth">
+            <select name="ramId">
+                <#list ramParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
     </div>
-  </div>
-</form>
-
-<h1 class="title">
-      Cooling (CPU Coolers/Fans)
-    </h1>
-<form class="box">
-  <div class="field">
-    <label class="label">Type cooling devices here. Sepearate items with columns to add multiple</label>
-    <div class="control">
-      <input class="input" type="email" placeholder="e.g. Thermalright Phantom Spirit 120 SE, Arctic P20, Arctic P20" />
+    <h1 class="title">Storage</h1>
+    <div class="field">
+        <label class="label">Choose Storage</label>
+        <div class="select is-fullwidth">
+            <select name="storageId">
+                <#list storageParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
     </div>
-  </div>
+    <h1 class="title">Case</h1>
+    <div class="field">
+        <label class="label">Choose Case</label>
+        <div class="select is-fullwidth">
+            <select name="caseId">
+                <#list caseParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
+    </div>
+    <h1 class="title">Cooler</h1>
+    <div class="field">
+        <label class="label">Choose Cooler</label>
+        <div class="select is-fullwidth">
+            <select name="coolerId">
+                <#list coolerParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
+    </div>
+    <h1 class="title">Power Supply</h1>
+    <div class="field">
+        <label class="label">Choose PSU</label>
+        <div class="select is-fullwidth">
+            <select name="psuId">
+                <#list psuParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
+    </div>
+    <h1 class="title">Motherboard</h1>
+    <div class="field">
+        <label class="label">Choose Motherboard</label>
+        <div class="select is-fullwidth">
+            <select name="moboId">
+                <#list moboParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
+    </div>
+    <h1 class="title">Fans</h1>
+    <div class="field">
+        <label class="label">Choose Fans</label>
+        <div class="select is-fullwidth">
+            <select name="fanId">
+                <#list fanParts as p>
+                    <option value="${p.id}">${p.name} — $${p.price}</option>
+                </#list>
+            </select>
+        </div>
+    </div>
+    <button class="button is-success is-large">Create Prebuilt</button>
 </form>
 
-  <button class="button">Add</button>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 

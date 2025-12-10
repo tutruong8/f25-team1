@@ -18,6 +18,12 @@ public class Computer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable=true)
+    private String imageURL;
+
+    @Column(nullable=false)
+    private String name;
+
     @Column(nullable=false)
     private String description;
 
@@ -65,8 +71,10 @@ public class Computer {
     //Constructors
     public Computer() {}
 
-    public Computer(String description, boolean isPrebuilt, BigDecimal price, Integer quantity, Builder builder, Customer customer, Integer fanCount,
+    public Computer(String name, String imageURL,String description, boolean isPrebuilt, BigDecimal price, Integer quantity, Builder builder, Customer customer, Integer fanCount,
         PCPart cpu, PCPart gpu, PCPart ram, PCPart storage, PCPart mobo, PCPart pcCase, PCPart fan, PCPart cooler, PCPart psu) {
+        this.name = name;
+        this.imageURL = imageURL;
         this.description = description;
         this.isPrebuilt = isPrebuilt;
         this.price = price;
@@ -89,6 +97,14 @@ public class Computer {
     //Computer ID
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    //Image URL
+    public String getImageURL() { return imageURL; }
+    public void setImageURL(String imageURL) { this.imageURL = imageURL; }
+
+    //Name
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
     //Description
     public String getDescription() { return description; }

@@ -57,6 +57,8 @@ public class ComputerService {
    */
     public Computer updateComputer(Long id, Computer updatedComputer) {
         return computerRepo.findById(id).map(computer -> {
+            computer.setImageURL(updatedComputer.getImageURL());
+            computer.setName(updatedComputer.getName());
             computer.setDescription(updatedComputer.getDescription());
             computer.setPrebuilt(updatedComputer.isPrebuilt());
             computer.setPrice(updatedComputer.getPrice());
@@ -66,9 +68,14 @@ public class ComputerService {
             computer.setReview(updatedComputer.getReview());
             computer.setCpu(updatedComputer.getCpu());
             computer.setGpu(updatedComputer.getGpu());
+            computer.setRam(updatedComputer.getRam());
+            computer.setStorage(updatedComputer.getStorage());
             computer.setMobo(updatedComputer.getMobo());
             computer.setPcCase(updatedComputer.getPcCase());
             computer.setFan(updatedComputer.getFan());
+            computer.setCooler(updatedComputer.getCooler());
+            computer.setPsu(updatedComputer.getPsu());
+            computer.setFanCount(updatedComputer.getFanCount());
             return computerRepo.save(computer);
         }).orElseGet(() -> {
             updatedComputer.setId(id);

@@ -75,7 +75,6 @@ public class ComputerService {
             computer.setFan(updatedComputer.getFan());
             computer.setCooler(updatedComputer.getCooler());
             computer.setPsu(updatedComputer.getPsu());
-            computer.setFanCount(updatedComputer.getFanCount());
             return computerRepo.save(computer);
         }).orElseGet(() -> {
             updatedComputer.setId(id);

@@ -39,14 +39,10 @@ public class Computer {
     @Column(nullable=false)
     private int quantity;
 
-    @Column(nullable=false)
-    private int fanCount;
-
     @ManyToOne
     @JoinColumn(name = "builder_id")
     @JsonIgnore
     private Builder builder;
-
 
     @ManyToOne
     @JoinColumn(name = "review_id")
@@ -71,7 +67,7 @@ public class Computer {
     //Constructors
     public Computer() {}
 
-    public Computer(String name, String imageURL,String description, boolean isPrebuilt, BigDecimal price, Integer quantity, Builder builder, Customer customer, Integer fanCount,
+    public Computer(String name, String imageURL,String description, boolean isPrebuilt, BigDecimal price, Integer quantity, Builder builder, Customer customer,
         PCPart cpu, PCPart gpu, PCPart ram, PCPart storage, PCPart mobo, PCPart pcCase, PCPart fan, PCPart cooler, PCPart psu) {
         this.name = name;
         this.imageURL = imageURL;
@@ -90,7 +86,6 @@ public class Computer {
         this.fan = fan;
         this.cooler = cooler;
         this.psu = psu;
-        this.fanCount = fanCount;
     }
 
     //Getters and Setters
@@ -125,10 +120,6 @@ public class Computer {
     //Quantity
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
-
-    //Fan Count
-    public int getFanCount() { return fanCount; }
-    public void setFanCount(int fanCount) { this.fanCount = fanCount; }
 
     //Builder
     public Builder getBuilder() { return builder; }

@@ -8,15 +8,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import csc340team1.DreamBuild.builder.*;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PCPartController {
@@ -71,8 +68,8 @@ public class PCPartController {
     public Object newPartForm(@RequestParam Long builderId, Model model) {
         Builder builder = builderService.getBuilderById(builderId);
 
-        model.addAttribute("builder", builder);      // <-- required by navbar
-        model.addAttribute("builderId", builderId);  // <-- required for the form POST
+        model.addAttribute("builder", builder);
+        model.addAttribute("builderId", builderId);
 
         PCPart part = new PCPart();
         model.addAttribute("part", part);

@@ -95,4 +95,5 @@ public class PCPart {
     //Customer
     public List<Customer> getCustomers() { return customers; }
     public void setCustomers(List<Customer> customers) { this.customers = customers; }
+    public int customerCount() { return customers.size(); }
 }

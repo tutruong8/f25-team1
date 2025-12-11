@@ -70,7 +70,7 @@
               <div class="column">${p.partType}</div>
               <div class="column">${p.description}</div>
               <div class="column">
-                ${p.customerCount()?c}
+                ${p.customerCount?c}
                 <div class="dropdown is-hoverable is-right">
                   <div class="dropdown-trigger">
                     <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu">

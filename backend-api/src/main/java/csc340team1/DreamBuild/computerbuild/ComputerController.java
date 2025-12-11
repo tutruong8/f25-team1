@@ -78,39 +78,4 @@ public class ComputerController {
         return computerService.readJson();
     }
 
-
-    // ------------------------------
-    // SAVE BUILD (FROM BUILDER PAGE)
-    // ------------------------------
-
-    @PostMapping("/computer/save-build")
-    @ResponseBody
-    public String saveBuild(
-            @RequestParam Long customerId,
-            @RequestParam String description,
-            @RequestParam BigDecimal price,
-            @RequestParam Long cpuId,
-            @RequestParam Long gpuId,
-            @RequestParam Long moboId,
-            @RequestParam Long caseId,
-            @RequestParam(required = false) Long fanId
-    ) {
-
-        PCPart cpu = pcPartRepo.findById(cpuId).orElse(null);
-        PCPart gpu = pcPartRepo.findById(gpuId).orElse(null);
-        PCPart mobo = pcPartRepo.findById(moboId).orElse(null);
-        PCPart pcCase = pcPartRepo.findById(caseId).orElse(null);
-        PCPart fan = (fanId != null) ? pcPartRepo.findById(fanId).orElse(null) : null;
-
-        Customer customer = customerRepo.findById(customerId).orElse(null);
-
-        Computer build = new Computer(description, price, 1, null, customer, cpu, gpu, mobo, pcCase, fan);
-
-        build.setCreatedAt(LocalDateTime.now());
-
-        computerService.createComputer(build);
-
-        return "Build saved successfully!";
-    }
-
 }

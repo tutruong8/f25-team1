@@ -101,7 +101,7 @@ public class PCPart {
     //Customer
     public List<Customer> getCustomers() { return customers; }
     public void setCustomers(List<Customer> customers) { this.customers = customers; }
-}
+
     //Customers List
     public List<Customer> getCustomersList() { return customersList; }
     public void setCustomersList(List<Customer> customersList) { this.customersList = customersList; }

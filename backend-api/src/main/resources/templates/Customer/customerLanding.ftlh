@@ -6,9 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Customer Home</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
-  <link rel="stylesheet" href="styles.css"> <!-- Sidebar CSS -->
+  <link rel="stylesheet" href="/styles.css"> <!-- Sidebar CSS -->
   <script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
-
 </head>
 
 <body class="has-background-link">
@@ -24,19 +23,19 @@
 
     <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-start">
-        <a href="customerBuilds.html" class="navbar-item">Build</a>
+        <a href="/customer/${customer.customerId}/builds" class="navbar-item">Build</a>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
             <span class="icon"><i class="fas fa-user"></i></span>
-            <span>Profile</span>
+            <span>${customer.name!""}</span>
           </a>
           <div class="navbar-dropdown is-right">
-            <a href="customerProfile.html" class="navbar-item">Account</a>
+            <a href="/customer/${customer.customerId}" class="navbar-item">Account</a>
             <hr class="navbar-divider">
-            <a class="navbar-item" href="/f25-team1/high-fidelity-prototype/CustomerLogin.html">Logout</a>
+            <a class="navbar-item" href="/logout">Logout</a>
           </div>
         </div>
       </div>
@@ -48,11 +47,11 @@
     <aside class="menu">
       <p class="menu-label">Navigation</p>
       <ul class="menu-list">
-        <li><a href="customerReviews.html">Reviews</a></li>
+        <li><a href="/customer/${customer.customerId}/reviews">Reviews</a></li>
       </ul>
       <p class="menu-label">Other</p>
       <ul class="menu-list">
-        <li><a href="customerProfile.html">Account</a></li>
+        <li><a href="/customer/${customer.customerId}">Account</a></li>
       </ul>
     </aside>
   </div>
@@ -72,7 +71,7 @@
   <section class="section top-cards container">
     <div class="columns is-variable is-8">
       <div class="column">
-        <a href="customerBuilds.html" class="card-content">
+        <a href="/customer/${customer.customerId}/builds" class="card-content">
           <div class="card has-text-centered">
             <p class="title">Get Started on a Build</p>
             <p class="subtitle">Customize your own PC or Laptop</p>
@@ -84,22 +83,19 @@
 
 <script>
 // Sidebar toggle
- const sidebar = document.getElementById('sidebar');
-      const sidebarToggle = document.getElementById('sidebarToggle');
-      const overlay = document.getElementById('sidebarOverlay');
+const sidebar = document.getElementById('sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const overlay = document.getElementById('sidebarOverlay');
 
-      sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('is-active');
-        overlay.classList.toggle('is-active');
-      });
-      overlay.addEventListener('click', () => {
-        sidebar.classList.remove('is-active');
-        overlay.classList.remove('is-active');
-      });
+sidebarToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('is-active');
+  overlay.classList.toggle('is-active');
+});
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('is-active');
+  overlay.classList.remove('is-active');
+});
 </script>
-
- 
-
 
 </body>
 

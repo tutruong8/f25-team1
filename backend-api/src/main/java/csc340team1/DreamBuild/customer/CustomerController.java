@@ -49,7 +49,12 @@ public class CustomerController {
         return "customer/customerProfile";
     }
 
-    
+    @GetMapping("/customer/{id}/home")
+public String showCustomerHome(@PathVariable Long id, Model model) {
+    model.addAttribute("customer", customerService.getCustomerById(id));
+    return "customer/customerHome"; 
+}
+
 
 
  /**

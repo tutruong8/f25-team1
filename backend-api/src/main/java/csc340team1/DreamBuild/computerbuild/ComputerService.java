@@ -60,7 +60,6 @@ public class ComputerService {
             computer.setImageURL(updatedComputer.getImageURL());
             computer.setName(updatedComputer.getName());
             computer.setDescription(updatedComputer.getDescription());
-            computer.setPrebuilt(updatedComputer.isPrebuilt());
             computer.setPrice(updatedComputer.getPrice());
             computer.setQuantity(updatedComputer.getQuantity());
             computer.setBuilder(updatedComputer.getBuilder());

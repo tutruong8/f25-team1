@@ -49,7 +49,13 @@ public class CustomerController {
         return "customer/customerProfile";
     }
 
-    
+    @GetMapping("/customer/{id}/home")
+public String showCustomerHome(@PathVariable Long id, Model model) {
+    model.addAttribute("customer", customerService.getCustomerById(id));
+    model.addAttribute("title", "Customer Home");
+    return "customer/customerLanding"; 
+}
+
 
 
  /**
@@ -95,7 +101,7 @@ public class CustomerController {
     @PostMapping("/customer")
     public Object createCustomer(Customer customer) {
         Customer newCustomer = customerService.createCustomer(customer);
-        return "redirect:/builder/" + newCustomer.getCustomerId();
+        return "redirect:/customer/" + newCustomer.getCustomerId() + "/home";
     }
 
     @PostMapping("/customer/signin")
@@ -103,9 +109,9 @@ public class CustomerController {
         try{
             Customer customer = customerService.authenticate(email, password);
             session.setAttribute("customerId", customer.getCustomerId());
-            return "redirect:/customer/" + customer.getCustomerId() + "/services";
+            return "redirect:/customer/" + customer.getCustomerId() + "/home";
         } catch (Exception e) {
-            return "redirect:/customer/signin?error";
+            return "redirect:/customer/existing?error";
         }
     }
     

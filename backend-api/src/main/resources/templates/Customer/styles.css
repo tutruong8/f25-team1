@@ -102,6 +102,8 @@
 .top-cards .card {
     cursor: pointer;
     transition: transform 0.2s;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .top-cards .card:hover {
@@ -111,4 +113,28 @@
 /* Search bar spacing */
 .search-section {
     margin: 2rem 0;
+}
+
+/* Hero size */
+.hero-small .hero-body {
+  padding-top: 20rem;
+  padding-bottom: 20rem;
+}
+
+
+
+.builder-row {
+  border-left: 4px solid #3273dc; /* Bulma link color */
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.builder-row:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
+}
+
+#summaryList li {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
 }

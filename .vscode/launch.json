@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DreamBuildApplication<DreamBuild>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "csc340team1.DreamBuild.DreamBuildApplication",
+            "projectName": "DreamBuild",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

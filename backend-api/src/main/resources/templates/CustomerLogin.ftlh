@@ -16,11 +16,12 @@
                     <div class="column is-4-desktop">
                         <div class="box">
                             <h1 class="title has-text-centered">Customer Login</h1>
-                            <form>
+                            
+                            <form id="existing-customer" action="/customer/signin" method="post">
                                 <div class="field">
-                                    <label class="label">Username</label>
+                                    <label class="label">Email</label>
                                     <div class="control">
-                                        <input class="input" type="text" placeholder="Enter username">
+                                        <input class="input" id="email" name="email" type="text" placeholder="Enter email" required>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-user"></i>
                                         </span>
@@ -29,21 +30,21 @@
                                 <div class="field">
                                     <label class="label">Password</label>
                                     <div class="control">
-                                        <input class="input" type="password" placeholder="Enter password">
+                                        <input class="input" id="password" name="password" type="password" placeholder="Enter password" required>
                                         <span class="icon is-small is-left">
                                             <i class="fas fa-lock"></i>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <a href="Customer/HomePage.html" title="Login" class="button is-primary is-fullwidth">Login</a>
+                                    <button class="button is-success is-fullwidth">Login</button>
                                 </div>
                             </form>
                             <p class="has-text-centered mt-4">
-                                Don’t have an account? <a href="CustomerSignUp.html">Sign up</a>
+                                Don’t have an account? <a href="/customer/new">Sign up</a>
                             </p>
                             <p class="has-text-centered">
-                                Are you a provider? <a href="ProviderLogin.html">Login here</a>
+                                Are you a provider? <a href="/builder/existing">Login here</a>
                             </p>
                         </div>
                     </div>

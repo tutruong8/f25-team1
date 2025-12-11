@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +15,7 @@ import csc340team1.DreamBuild.customer.CustomerRepo;
 import csc340team1.DreamBuild.pc_part.PCPart;
 import csc340team1.DreamBuild.pc_part.PCPartRepo;
 
-@RestController
+@Controller
 public class ComputerController {
 
     @Autowired

@@ -35,6 +35,14 @@ public class CustomerController {
         return "customer-list";
     }
 
+    
+
+    @GetMapping("/customer/{id}/landing")
+public String customerLanding(@PathVariable Long id, Model model) {
+    model.addAttribute("customer", customerService.getCustomerById(id));
+    return "Customer/customerLanding";
+}
+
    /**
    * Endpoint to get the desired customer through ID. You can view and update customer info on the same page
    * @param id ID of the customer to get
@@ -76,7 +84,7 @@ public class CustomerController {
    public Object customerSignUp(Model model){
     Customer newCustomer = new Customer();
     model.addAttribute("customer", newCustomer);
-    model.addAttribute("title", "Sign Up Builder");
+    model.addAttribute("title", "Sign Up Customer");
     return "CustomerSignUp";
    }
 
@@ -95,19 +103,20 @@ public class CustomerController {
     @PostMapping("/customer")
     public Object createCustomer(Customer customer) {
         Customer newCustomer = customerService.createCustomer(customer);
-        return "redirect:/builder/" + newCustomer.getCustomerId();
+        return "redirect:/customer/" + newCustomer.getCustomerId() + "/landing";
     }
 
     @PostMapping("/customer/signin")
-    public String signIn(@RequestParam String email, @RequestParam String password, HttpSession session) {
-        try{
-            Customer customer = customerService.authenticate(email, password);
-            session.setAttribute("customerId", customer.getCustomerId());
-            return "redirect:/customer/" + customer.getCustomerId() + "/services";
-        } catch (Exception e) {
-            return "redirect:/customer/signin?error";
-        }
+public String signIn(@RequestParam String email, @RequestParam String password, HttpSession session) {
+    try {
+        Customer customer = customerService.authenticate(email, password);
+        session.setAttribute("customerId", customer.getCustomerId());
+        return "redirect:/customer/" + customer.getCustomerId() + "/landing";
+    } catch (Exception e) {
+        return "redirect:/customer/existing?error";
     }
+}
+
     
     /**
    * Endpoint to update a customer in the database

@@ -35,9 +35,6 @@
       <a class="navbar-item" href="/builder/${builder.id}/services">
         Services
       </a>
-      <a class="navbar-item" href="/builder/${builder.id}/customer-statistics">
-        Customer Statistics
-      </a>
       <a class="navbar-item" href="/builder/${builder.id}/reviews">
         Your Reviews
       </a>

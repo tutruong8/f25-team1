@@ -36,7 +36,6 @@ public class PCPart {
     @Column(nullable = false)
     private int quantity;
 
-
     @ManyToOne
     @JoinColumn(name = "builder_id")
     @JsonIgnore
@@ -139,14 +138,9 @@ public class PCPart {
     public List<Customer> getCustomers() {
         return customers;
     }
-
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
     }
-
-
-    //Customer
-    public List<Customer> getCustomers() { return customers; }
-    public void setCustomers(List<Customer> customers) { this.customers = customers; }
     public int customerCount() { return customers.size(); }
+
 }

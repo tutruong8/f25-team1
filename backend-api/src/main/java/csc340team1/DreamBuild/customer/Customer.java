@@ -38,7 +38,7 @@ public class Customer {
     private List<Computer> computers = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "customer_part", joinColumns = @JoinColumn(name = "customer_id"), inverseJoinColumns = @JoinColumn(name = "pcpart_id"))
+    @JoinTable(name = "customer_part", joinColumns = @JoinColumn(name = "customer = id"), inverseJoinColumns = @JoinColumn(name = "pcpart_id"))
     @JsonIgnoreProperties("customers")
     private List<PCPart> purchasedParts = new ArrayList<>();
 

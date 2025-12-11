@@ -38,35 +38,6 @@ public class PCPart {
     @Column(nullable = false)
     private int quantity;
 
-    // COMPATIBILITY!!!!
-
-    // CPU + Motherboard
-    @Column(nullable = true)
-    private String socket;
-
-    // RAM + Motherboard
-    @Column(nullable = true)
-    private String ramType;
-
-    // Motherboard + Case
-    @Column(nullable = true)
-    private String formFactor;
-
-    // PSU wattage
-    @Column(nullable = true)
-    private Integer wattage;
-
-    // GPU required wattage
-    @Column(nullable = true)
-    private Integer requiredWatt;
-
-    // GPU length (mm)
-    @Column(nullable = true)
-    private Integer gpuLength;
-
-    // Case maximum GPU length (mm)
-    @Column(nullable = true)
-    private Integer gpuMaxLength;
 
     @ManyToOne
     @JoinColumn(name = "builder_id")
@@ -175,69 +146,5 @@ public class PCPart {
         this.customers = customers;
     }
 
-    // COMPATIBILITY GETTERS AND SETTERS
-
-    // CPU + MOBO
-    public String getSocket() {
-        return socket;
-    }
-
-    public void setSocket(String socket) {
-        this.socket = socket;
-    }
-
-    // RAM + MOBO
-    public String getRamType() {
-        return ramType;
-    }
-
-    public void setRamType(String ramType) {
-        this.ramType = ramType;
-    }
-
-    // MOBO + CASE
-    public String getFormFactor() {
-        return formFactor;
-    }
-
-    public void setFormFactor(String formFactor) {
-        this.formFactor = formFactor;
-    }
-
-    // PSU WATTAGE
-    public Integer getWattage() {
-        return wattage;
-    }
-
-    public void setWattage(Integer wattage) {
-        this.wattage = wattage;
-    }
-
-    // GPU REQUIRED WATTAGE
-    public Integer getRequiredWatt() {
-        return requiredWatt;
-    }
-
-    public void setRequiredWatt(Integer requiredWatt) {
-        this.requiredWatt = requiredWatt;
-    }
-
-    // GPU LENGTH (MM)
-    public Integer getGpuLength() {
-        return gpuLength;
-    }
-
-    public void setGpuLength(Integer gpuLength) {
-        this.gpuLength = gpuLength;
-    }
-
-    // CASE MAXIMUM GPU LENGTH (MM)
-    public Integer getGpuMaxLength() {
-        return gpuMaxLength;
-    }
-
-    public void setGpuMaxLength(Integer gpuMaxLength) {
-        this.gpuMaxLength = gpuMaxLength;
-    }
 
 }

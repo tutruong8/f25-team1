@@ -406,43 +406,12 @@ function selectPart(btn) {
     name: btn.dataset.name,
     price: Number(btn.dataset.price),
 
-    socket: btn.dataset.socket,
-    ramType: btn.dataset.ramtype,
-    formFactor: btn.dataset.formfactor,
-    wattage: Number(btn.dataset.wattage),
-    requiredWatt: Number(btn.dataset.requiredwatt),
-    gpuLength: Number(btn.dataset.gpulength),
-    gpuMaxLength: Number(btn.dataset.gpumaxlength)
   };
 
-  checkCompatibility(type);
+  
   updateRow(type);
   updateSummary();
   closeModal();
-}
-
-
-// COMPATIBILITY CHECK
-function checkCompatibility(type) {
-  const cpu = selectedParts["cpu"];
-  const mobo = selectedParts["motherboard"];
-  const ram = selectedParts["ram"];
-  const psu = selectedParts["psu"];
-  const gpu = selectedParts["gpu"];
-  const pcCase = selectedParts["case"];
-
-  if (cpu && mobo && cpu.socket && mobo.socket && cpu.socket !== mobo.socket) {
-    alert("⚠ CPU and motherboard sockets do NOT match!");
-  }
-  if (ram && mobo && ram.ramType && mobo.ramType && ram.ramType !== mobo.ramType) {
-    alert("⚠ RAM type incompatible with motherboard.");
-  }
-  if (gpu && pcCase && gpu.gpuLength && pcCase.gpuMaxLength && gpu.gpuLength > pcCase.gpuMaxLength) {
-    alert("⚠ GPU is too long for this case.");
-  }
-  if (psu && gpu && psu.wattage && gpu.requiredWatt && psu.wattage < gpu.requiredWatt) {
-    alert("⚠ PSU wattage is TOO LOW for your GPU.");
-  }
 }
 
 

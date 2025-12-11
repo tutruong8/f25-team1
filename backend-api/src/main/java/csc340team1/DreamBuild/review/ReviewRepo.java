@@ -10,9 +10,6 @@ public interface ReviewRepo extends JpaRepository<Review, Long> {
     @Query(value = "Select * from reviews s where s.builder_id = ?1", nativeQuery = true)
     List<Review> findByBuilderId(Long builderId);
 
-    @Query(value = "Select * from reviews s where s.computer_id = ?1", nativeQuery = true)
-    List<Review> findByComputerId(Long computerId);
-
      @Query(value = "SELECT * FROM reviews s WHERE s.customer_id = ?1", nativeQuery = true)
     List<Review> findByCustomerId(Long customerId);
 }

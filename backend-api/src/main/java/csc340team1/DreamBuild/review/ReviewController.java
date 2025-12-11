@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import csc340team1.DreamBuild.builder.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 @Controller
 public class ReviewController {
+    @Autowired
+    private BuilderService builderService;
     @Autowired
     private ReviewService reviewService;
 
@@ -33,26 +36,19 @@ public class ReviewController {
     }
 
     /**
-     * Builder review page (list of reviews for builder)
+     * Reply to certain review
      */
-    @GetMapping("/builder/{builderId}/reviews")
-    public String showBuilderReviews(@PathVariable Long builderId, Model model) {
-        List<Review> reviews = reviewService.getReviewByBuilder(builderId);
-        model.addAttribute("reviews", reviews);
+    @GetMapping("/builder/{builderId}/reviews/{reviewId}/reply")
+    public String showBuilderReviewReplyForm(@PathVariable Long builderId, @PathVariable Long reviewId, Model model) {
+        Builder builder = builderService.getBuilderById(builderId);
+        Review review = reviewService.getReviewById(reviewId).orElse(null);
+
+        model.addAttribute("builder", builder);
+        model.addAttribute("review", review);
         model.addAttribute("builderId", builderId);
-        return "builder/builderReviews";
+        return "builder/builderReply";
     }
 
-    /**
-     * Computer review page (list of reviews for a computer)
-     */
-    @GetMapping("/computer/{computerId}/reviews")
-    public String showComputerReviews(@PathVariable Long computerId, Model model) {
-        List<Review> reviews = reviewService.getReviewByComputer(computerId);
-        model.addAttribute("reviews", reviews);
-        model.addAttribute("computerId", computerId);
-        return "review/computer-reviews"; 
-    }
 
     /**
      * Single review details page
@@ -79,7 +75,7 @@ public class ReviewController {
     
    @PostMapping("/review/update/{id}")
    public String updateReview(@PathVariable Long id, @ModelAttribute Review review) {
-reviewService.updateReview(id, review);       
+        reviewService.updateReview(id, review);       
        return "redirect:/customer/" + id + "reviews";
    }
 
@@ -88,6 +84,13 @@ reviewService.updateReview(id, review);
        reviewService.deleteReview(customerId);
        return "redirect:/customer/" + customerId + "/reviews";
    }
+
+   @PostMapping("/builder/{builderId}/reviews/{reviewId}/reply")
+    public String submitReply(@PathVariable Long builderId, @PathVariable Long reviewId, @RequestParam String reply) {
+        reviewService.addReply(reviewId, reply);
+        return "redirect:/builder/" + builderId + "/reviews";
+    }
+
    
 
     /**

@@ -38,18 +38,26 @@
   </div>
 </nav>
 
-<form class="box">
- 
+<div class="box" style="margin: 20px;">
+  
+  <h2 class="title is-4">Replying to ${review.customer.name!"Anonymous"}</h2>
+  <p><strong>Review:</strong> ${review.comment}</p>
+  <p><strong>Rating:</strong> ${review.rating}/10</p>
+  <hr>
 
-  <div class="field">
-    <label class="label">Respond to user</label>
-    <div class="control">
-      <textarea class="textarea" placeholder="e.g. Thank you!"></textarea>
+  <form method="post"
+        action="/builder/${builderId}/reviews/${review.id}/reply">
+
+    <div class="field">
+      <label class="label">Your Reply</label>
+      <textarea class="textarea" name="reply"
+                placeholder="Write your response...">${review.reply!}</textarea>
     </div>
-  </div>
 
-  <button class="button is">Reply</button>
-</form>
+    <button class="button is-primary">Submit Reply</button>
+  </form>
+
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

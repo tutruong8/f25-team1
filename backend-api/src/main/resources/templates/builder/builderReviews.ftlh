@@ -38,58 +38,32 @@
   </div>
 </nav>
 
-<div class="card">
-  <header class="card-header">
-    <p class="card-header-title">Anonymous Buyer 1</p>
-     <p class="subtitle is-6">Rating: 5/5</p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </header>
-  <div class="card-content">
-    <div class="content">
-      Great build! Would do business again!
-      <br />
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
-  <footer class="card-footer">
-    <a href="builderReply.html" class="card-footer-item">Reply</a>
-  </footer>
-</div>
+<#list reviews as r>
+    <div class="card" style="margin: 20px;">
+      <header class="card-header">
+        <p class="card-header-title">
+          ${r.customer.name!"Anonymous"}
+        </p>
+        <p class="subtitle is-6">Rating: ${r.rating}/10</p>
+      </header>
 
-<div class="card">
-  <header class="card-header">
-    <p class="card-header-title">Anonymous Buyer 2</p>
-     <p class="subtitle is-6">Rating: 0/5</p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </header>
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img
-        src="https://i.redd.it/a07mti5yvol41.jpg"
-        alt="Placeholder image"
-      />
-    </figure>
-  </div>
-  <div class="card-content">
-    <div class="content">
-      It caught on fire...
-      <br />
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
-  <footer class="card-footer">
-    <a href="builderReply.html" class="card-footer-item">Reply</a>
-  </footer>
-</div>
+      <div class="card-content">
+        <div class="content">
+          ${r.comment}
+        </div>
 
+        <#if r.reply??>
+            <strong>Your Reply:</strong><br>
+            ${r.reply}
+        </#if>
+      </div>
+
+      <footer class="card-footer">
+        <a href="/builder/${builderId}/reviews/${r.id}/reply"
+           class="card-footer-item">Reply/Edit Reply</a>
+      </footer>
+    </div>
+</#list>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

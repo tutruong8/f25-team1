@@ -27,10 +27,6 @@ public class ReviewService {
         return reviewRepo.findByBuilderId(builderId);
     }
 
-    public List<Review> getReviewByComputer(Long computerId) {
-        return reviewRepo.findByComputerId(computerId);
-    }
-
     public Optional<Review> getReviewById(Long reviewId) {
     return reviewRepo.findById(reviewId);
 }
@@ -44,9 +40,11 @@ public class ReviewService {
         return reviewRepo.findById(id).map(review -> {
             review.setRating(updatedReview.getRating());
             review.setComment(updatedReview.getComment());
+            review.setReply(updatedReview.getReply());
             review.setCustomer(updatedReview.getCustomer());
             review.setBuilder(updatedReview.getBuilder());
             review.setComputer(updatedReview.getComputer());
+            review.setCreatedAt(updatedReview.getCreatedAt());
             return reviewRepo.save(review);
         }).orElseThrow(() -> new NoSuchElementException("Review not found with id " + id));
     }
@@ -54,6 +52,15 @@ public class ReviewService {
     public void deleteReview(Long id) {
         reviewRepo.deleteById(id);
     }
+
+    public void addReply(Long reviewId, String reply) {
+        Review review = reviewRepo.findById(reviewId)
+            .orElseThrow(() -> new NoSuchElementException("Review not found"));
+
+        review.setReply(reply);
+        reviewRepo.save(review);
+    }
+
 
     /**
    * Method to write PC part to JSON file

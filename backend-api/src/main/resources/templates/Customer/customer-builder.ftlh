@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Builds</title>
+  <title>Build Your PC</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
   <link rel="stylesheet" href="styles.css"> <!-- Sidebar CSS -->
   <script defer src="https://use.fontawesome.com/releases/v6.4.0/js/all.js"></script>
@@ -25,7 +25,6 @@
     <div id="navbarMenu" class="navbar-menu">
       <div class="navbar-start">
         <a href="customerBuilds.html" class="navbar-item">Build</a>
-        <a href="customerPrebuilt.html" class="navbar-item">Pre-Built</a>
       </div>
 
       <div class="navbar-end">
@@ -51,11 +50,10 @@
       <ul class="menu-list">
         <li><a href="customerLanding.html">Home</a></li>
         <li><a href="customerReviews.html">Reviews</a></li>
-        <li><a href="#">Orders</a></li>
       </ul>
       <p class="menu-label">Other</p>
       <ul class="menu-list">
-        <li><a href="#">Help</a></li>
+        <li><a href="customerProfile.html">Account</a></li>
       </ul>
     </aside>
   </div>
@@ -240,155 +238,248 @@
   </div>
 </div>
 
+<!-- CPU -->
+<div id="template-cpu" class="is-hidden">
+  <#list cpus as p>
+    <button class="button is-fullwidth part-option"
+            data-type="cpu"
+            data-id="${p.id}"
+            data-name="${p.name}"
+            data-price="${p.price}"
+            data-socket="${p.socket!}">
+      <span>${p.name}</span><span>$${p.price}</span>
+    </button>
+    <hr>
+  </#list>
+</div>
 
+<!-- GPU -->
+<div id="template-gpu" class="is-hidden">
+  <#list gpus as p>
+    <button class="button is-fullwidth part-option"
+            data-type="gpu"
+            data-id="${p.id}"
+            data-name="${p.name}"
+            data-price="${p.price}"
+            data-requiredWatt="${p.requiredWatt!}"
+            data-gpuLength="${p.gpuLength!}">
+      <span>${p.name}</span><span>$${p.price}</span>
+    </button>
+    <hr>
+  </#list>
+</div>
+
+<!-- Motherboard -->
+<div id="template-motherboard" class="is-hidden">
+  <#list mobos as p>
+    <button class="button is-fullwidth part-option"
+            data-type="motherboard"
+            data-id="${p.id}"
+            data-name="${p.name}"
+            data-price="${p.price}"
+            data-socket="${p.socket!}"
+            data-ramType="${p.ramType!}"
+            data-formFactor="${p.formFactor!}">
+      <span>${p.name}</span><span>$${p.price}</span>
+    </button>
+    <hr>
+  </#list>
+</div>
+
+<!-- RAM -->
+<div id="template-ram" class="is-hidden">
+  <#list rams as p>
+    <button class="button is-fullwidth part-option"
+            data-type="ram"
+            data-id="${p.id}"
+            data-name="${p.name}"
+            data-price="${p.price}"
+            data-ramType="${p.ramType!}">
+      <span>${p.name}</span><span>$${p.price}</span>
+    </button>
+    <hr>
+  </#list>
+</div>
+
+<!-- Storage -->
+<div id="template-storage" class="is-hidden">
+  <#list storages as p>
+    <button class="button is-fullwidth part-option"
+            data-type="storage"
+            data-id="${p.id}"
+            data-name="${p.name}"
+            data-price="${p.price}">
+      <span>${p.name}</span><span>$${p.price}</span>
+    </button>
+    <hr>
+  </#list>
+</div>
+
+<!-- PSU -->
+<div id="template-psu" class="is-hidden">
+  <#list psus as p>
+    <button class="button is-fullwidth part-option"
+            data-type="psu"
+            data-id="${p.id}"
+            data-name="${p.name}"
+            data-price="${p.price}"
+            data-wattage="${p.wattage!}">
+      <span>${p.name}</span><span>$${p.price}</span>
+    </button>
+    <hr>
+  </#list>
+</div>
+
+<!-- Case -->
+<div id="template-case" class="is-hidden">
+  <#list cases as p>
+    <button class="button is-fullwidth part-option"
+            data-type="case"
+            data-id="${p.id}"
+            data-name="${p.name}"
+            data-price="${p.price}"
+            data-gpuMaxLength="${p.gpuMaxLength!}">
+      <span>${p.name}</span><span>$${p.price}</span>
+    </button>
+    <hr>
+  </#list>
+</div>
 
 <script>
 // Sidebar toggle
- const sidebar = document.getElementById('sidebar');
-      const sidebarToggle = document.getElementById('sidebarToggle');
-      const overlay = document.getElementById('sidebarOverlay');
+const sidebar = document.getElementById('sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const overlay = document.getElementById('sidebarOverlay');
 
-      sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('is-active');
-        overlay.classList.toggle('is-active');
-      });
-      overlay.addEventListener('click', () => {
-        sidebar.classList.remove('is-active');
-        overlay.classList.remove('is-active');
-      });
+sidebarToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('is-active');
+  overlay.classList.toggle('is-active');
+});
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('is-active');
+  overlay.classList.remove('is-active');
+});
 
-      
-  // Demo parts – will later be replaced with real data from the actual site
-  const parts = {
-    cpu: [
-      { name: "Intel Core i5-12400F", price: 150 },
-      { name: "Intel Core i7-13700K", price: 380 },
-      { name: "AMD Ryzen 5 5600", price: 140 },
-      { name: "AMD Ryzen 7 7800X3D", price: 420 }
-    ],
-    gpu: [
-      { name: "NVIDIA RTX 4060 8GB", price: 300 },
-      { name: "NVIDIA RTX 4070 Super 12GB", price: 580 },
-      { name: "AMD Radeon RX 7700 XT 12GB", price: 460 }
-    ],
-    motherboard: [
-      { name: "B550 ATX Motherboard", price: 130 },
-      { name: "Z690 Gaming Motherboard", price: 220 }
-    ],
-    ram: [
-      { name: "16GB (2x8GB) DDR4-3200", price: 60 },
-      { name: "32GB (2x16GB) DDR5-6000", price: 140 }
-    ],
-    storage: [
-      { name: "1TB NVMe SSD", price: 80 },
-      { name: "2TB NVMe SSD", price: 130 }
-    ],
-    psu: [
-      { name: "650W 80+ Bronze", price: 75 },
-      { name: "750W 80+ Gold", price: 120 }
-    ],
-    case: [
-      { name: "Mid Tower RGB Case", price: 90 },
-      { name: "Premium Glass Case", price: 150 }
-    ]
+
+//LOGIC
+const selectedParts = {};
+
+const partModal = document.getElementById('partModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalBody = document.getElementById('modalBody');
+const closeModalBtn = document.getElementById('closeModal');
+
+
+// OPEN MODAL
+function openModal(type) {
+  modalTitle.textContent = "Select " + type.toUpperCase();
+
+  const template = document.getElementById("template-" + type);
+  modalBody.innerHTML = template.innerHTML;
+
+  partModal.classList.add("is-active");
+
+  // Attach click handlers to each part option
+  document.querySelectorAll(".part-option").forEach(btn => {
+    btn.addEventListener("click", () => selectPart(btn));
+  });
+}
+
+
+// CLOSE MODAL
+function closeModal() {
+  partModal.classList.remove("is-active");
+}
+closeModalBtn.addEventListener("click", closeModal);
+partModal.querySelector(".modal-background").addEventListener("click", closeModal);
+
+
+// SELECT PART
+function selectPart(btn) {
+  const type = btn.dataset.type;
+
+  selectedParts[type] = {
+    id: btn.dataset.id,
+    name: btn.dataset.name,
+    price: Number(btn.dataset.price),
+
+    socket: btn.dataset.socket,
+    ramType: btn.dataset.ramtype,
+    formFactor: btn.dataset.formfactor,
+    wattage: Number(btn.dataset.wattage),
+    requiredWatt: Number(btn.dataset.requiredwatt),
+    gpuLength: Number(btn.dataset.gpulength),
+    gpuMaxLength: Number(btn.dataset.gpumaxlength)
   };
 
-  const selectedParts = {};
-  let currentType = "";
+  checkCompatibility(type);
+  updateRow(type);
+  updateSummary();
+  closeModal();
+}
 
-  const partModal = document.getElementById('partModal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalBody = document.getElementById('modalBody');
-  const closeModalBtn = document.getElementById('closeModal');
 
-  function openModal(type) {
-    currentType = type;
-    modalTitle.textContent = "Select " + type.toUpperCase();
+// COMPATIBILITY CHECK
+function checkCompatibility(type) {
+  const cpu = selectedParts["cpu"];
+  const mobo = selectedParts["motherboard"];
+  const ram = selectedParts["ram"];
+  const psu = selectedParts["psu"];
+  const gpu = selectedParts["gpu"];
+  const pcCase = selectedParts["case"];
 
-    const list = parts[type] || [];
-    let html = "";
-
-    list.forEach((p, index) => {
-      html += `
-        <button class="button is-fullwidth is-justify-content-space-between part-option"
-                data-type="${type}"
-                data-name="${p.name}"
-                data-price="${p.price}">
-          <span>${p.name}</span>
-          <span>$${p.price}</span>
-        </button>
-        ${index < list.length - 1 ? "<hr>" : ""}
-      `;
-    });
-
-    modalBody.innerHTML = html;
-    partModal.classList.add('is-active');
-
-    // Add click handlers for new buttons
-    document.querySelectorAll('.part-option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const type = btn.dataset.type;
-        const name = btn.dataset.name;
-        const price = Number(btn.dataset.price);
-
-        selectedParts[type] = { name, price };
-        updateRow(type);
-        updateSummary();
-        closeModal();
-      });
-    });
+  if (cpu && mobo && cpu.socket && mobo.socket && cpu.socket !== mobo.socket) {
+    alert("⚠ CPU and motherboard sockets do NOT match!");
   }
-
-  function closeModal() {
-    partModal.classList.remove('is-active');
+  if (ram && mobo && ram.ramType && mobo.ramType && ram.ramType !== mobo.ramType) {
+    alert("⚠ RAM type incompatible with motherboard.");
   }
+  if (gpu && pcCase && gpu.gpuLength && pcCase.gpuMaxLength && gpu.gpuLength > pcCase.gpuMaxLength) {
+    alert("⚠ GPU is too long for this case.");
+  }
+  if (psu && gpu && psu.wattage && gpu.requiredWatt && psu.wattage < gpu.requiredWatt) {
+    alert("⚠ PSU wattage is TOO LOW for your GPU.");
+  }
+}
 
-  closeModalBtn.addEventListener('click', closeModal);
-  partModal.querySelector('.modal-background').addEventListener('click', closeModal);
 
-  // Attach to the "Customize" buttons
-  document.querySelectorAll('.select-part').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const type = btn.dataset.type;
-      openModal(type);
-    });
+// UPDATE ROW UI
+function updateRow(type) {
+  const label = document.getElementById(`label-${type}`);
+  const priceSpan = document.getElementById(`price-${type}`);
+  const part = selectedParts[type];
+
+  label.textContent = part ? part.name : "Not selected";
+  priceSpan.textContent = part ? part.price.toFixed(2) : "0.00";
+}
+
+
+// UPDATE SUMMARY
+function updateSummary() {
+  const summaryList = document.getElementById("summaryList");
+  const totalPriceEl = document.getElementById("totalPrice");
+  let total = 0;
+
+  summaryList.innerHTML = "";
+
+  Object.keys(selectedParts).forEach(type => {
+    const part = selectedParts[type];
+    total += part.price;
+    const li = document.createElement("li");
+    li.innerHTML = `<strong>${type.toUpperCase()}:</strong> ${part.name} – $${part.price.toFixed(2)}`;
+    summaryList.appendChild(li);
   });
 
-  // Row UI update
-  function updateRow(type) {
-    const label = document.getElementById(`label-${type}`);
-    const priceSpan = document.getElementById(`price-${type}`);
-    const part = selectedParts[type];
-
-    if (part) {
-      label.textContent = part.name;
-      priceSpan.textContent = part.price.toFixed(2);
-    } else {
-      label.textContent = "Not selected";
-      priceSpan.textContent = "0.00";
-    }
-  }
-
-  // Summary + Total
-  function updateSummary() {
-    const summaryList = document.getElementById('summaryList');
-    const totalPriceEl = document.getElementById('totalPrice');
-    let total = 0;
-    summaryList.innerHTML = "";
-
-    Object.keys(selectedParts).forEach(type => {
-      const part = selectedParts[type];
-      total += part.price;
-      const li = document.createElement('li');
-      li.innerHTML = `<strong>${type.toUpperCase()}:</strong> ${part.name} - $${part.price.toFixed(2)}`;
-      summaryList.appendChild(li);
-    });
-
-    totalPriceEl.textContent = total.toFixed(2);
-  }
+  totalPriceEl.textContent = total.toFixed(2);
+}
 
 
+// Hook "Customize" buttons
+document.querySelectorAll(".select-part").forEach(btn => {
+  btn.addEventListener("click", () => openModal(btn.dataset.type));
+});
 </script>
+
 
  
 

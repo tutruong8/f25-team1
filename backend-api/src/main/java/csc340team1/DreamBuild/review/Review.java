@@ -3,8 +3,8 @@ import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import csc340team1.DreamBuild.builder.Builder;
-import csc340team1.DreamBuild.customer.Customer;
 import csc340team1.DreamBuild.computerbuild.Computer;
+import csc340team1.DreamBuild.customer.Customer;
 
 @Entity
 @Table(name = "reviews")

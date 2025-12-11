@@ -1,4 +1,4 @@
-package csc340team1.DreamBuild.computerbuild;
+package csc340team1.DreamBuild.computerBuild;
 import java.util.*;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -30,8 +30,6 @@ public class Computer {
     @Column(nullable=false)
     private LocalDateTime createdAt;
 
-    @Column(nullable=false)
-    private boolean isPrebuilt;
 
     @Column(nullable=false)
     private BigDecimal price;
@@ -72,7 +70,7 @@ public class Computer {
         this.name = name;
         this.imageURL = imageURL;
         this.description = description;
-        this.isPrebuilt = isPrebuilt;
+
         this.price = price;
         this.quantity = quantity;
         this.builder = builder;
@@ -108,10 +106,6 @@ public class Computer {
     //Time created
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
-
-    //If it is a prebuilt or not
-    public boolean isPrebuilt() { return isPrebuilt; }
-    public void setPrebuilt(boolean isPrebuilt) { this.isPrebuilt = isPrebuilt; }
 
     //Price
     public BigDecimal getPrice() { return price; }

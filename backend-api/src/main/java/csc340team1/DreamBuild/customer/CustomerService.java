@@ -29,7 +29,7 @@ public class CustomerService {
    * @param id ID of the customer to get
    * @return customer with the specified ID
    */
-    public Customer getCustomerById(long id) {
+    public Object getCustomerById(long id) {
         return customerRepo.findById(id).orElse(null);
     }
 
@@ -38,7 +38,7 @@ public class CustomerService {
    * @param email email of the customer to get
    * @return customer with the specified email
    */
-    public Optional<Customer> getCustomerByEmail(String email) {
+    public Object getCustomerByEmail(String email) {
         return customerRepo.findByEmail(email);
     }
 

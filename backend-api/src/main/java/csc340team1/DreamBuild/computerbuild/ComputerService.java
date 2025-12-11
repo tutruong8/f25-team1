@@ -58,7 +58,6 @@ public class ComputerService {
     public Computer updateComputer(Long id, Computer updatedComputer) {
         return computerRepo.findById(id).map(computer -> {
             computer.setDescription(updatedComputer.getDescription());
-            computer.setPrebuilt(updatedComputer.isPrebuilt());
             computer.setPrice(updatedComputer.getPrice());
             computer.setQuantity(updatedComputer.getQuantity());
             computer.setBuilder(updatedComputer.getBuilder());

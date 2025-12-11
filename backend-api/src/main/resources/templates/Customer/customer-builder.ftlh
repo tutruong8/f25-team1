@@ -215,7 +215,7 @@
             <strong>Total: $<span id="totalPrice">0.00</span></strong>
           </p>
 
-          <button class="button is-link is-fullwidth mt-3">
+          <button id="saveBuildBtn" class="button is-link is-fullwidth mt-3">
            Save Dream Build
           </button>
         </div>
@@ -346,6 +346,9 @@
 </div>
 
 <script>
+
+const CUSTOMER_ID = "${customer.customerId!0}";
+
 // Sidebar toggle
 const sidebar = document.getElementById('sidebar');
 const sidebarToggle = document.getElementById('sidebarToggle');
@@ -478,6 +481,31 @@ function updateSummary() {
 document.querySelectorAll(".select-part").forEach(btn => {
   btn.addEventListener("click", () => openModal(btn.dataset.type));
 });
+
+document.querySelector("#saveBuildBtn").addEventListener("click", () => {
+    
+    const buildName = prompt("Name your build:");
+    if (!buildName) return;
+
+    const data = new URLSearchParams();
+    data.append("customerId", CUSTOMER_ID);  // You will replace this with real session ID
+    data.append("description", buildName);
+    data.append("price", document.getElementById("totalPrice").textContent);
+
+    data.append("cpuId", selectedParts.cpu?.id);
+    data.append("gpuId", selectedParts.gpu?.id);
+    data.append("moboId", selectedParts.motherboard?.id);
+    data.append("caseId", selectedParts.case?.id);
+    data.append("fanId", selectedParts.fan?.id || "");
+
+    fetch("/computer/save-build", {
+        method: "POST",
+        body: data
+    })
+    .then(res => res.text())
+    .then(msg => alert(msg));
+});
+
 </script>
 
 

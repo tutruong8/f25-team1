@@ -1,14 +1,33 @@
 package csc340team1.DreamBuild.computerbuild;
 
-import java.io.IOException;
-import java.util.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotati
+
+import csc340team1.DreamBuild.customer.CustomerRepo;
+import csc340team1.DreamBuild.pc_part.PCPartRepo;
+
+import csc340team1.DreamBuild.customer.CustomerRepo;
+import csc340team1.DreamBuild.pc_part.PCPartRepo;on.Autowired;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import csc340team1.DreamBuild.customer.Customer;
+import csc340team1.DreamBuild.customer.CustomerRepo;
+import csc340team1.DreamBuild.pc_part.PCPart;
+import csc340team1.DreamBuild.pc_part.PCPartRepo;
 
 @RestController
 public class ComputerController {
     @Autowired
-    private ComputerService computerService;
+private ComputerService computerService;
+
+@Autowired
+private PCPartRepo pcPartRepo;
+
+@Autowired
+private CustomerRepo customerRepo;
+
 
     /**
    * Endpoint to get all computers in the database
@@ -89,4 +108,37 @@ public class ComputerController {
     public Object readJson() throws IOException {
         return computerService.readJson();
     }
+
+
+    @PostMapping("/computer/save-build")
+@ResponseBody
+public String saveBuild(
+        @RequestParam Long customerId,
+        @RequestParam String description,
+        @RequestParam BigDecimal price,
+        @RequestParam Long cpuId,
+        @RequestParam Long gpuId,
+        @RequestParam Long moboId,
+        @RequestParam Long caseId,
+        @RequestParam(required = false) Long fanId
+) {
+
+    PCPart cpu = pcPartRepo.findById(cpuId).orElse(null);
+    PCPart gpu = pcPartRepo.findById(gpuId).orElse(null);
+    PCPart mobo = pcPartRepo.findById(moboId).orElse(null);
+    PCPart pcCase = pcPartRepo.findById(caseId).orElse(null);
+    PCPart fan = (fanId != null) ? pcPartRepo.findById(fanId).orElse(null) : null;
+
+    Customer customer = customerRepo.findById(customerId).orElse(null);
+
+    Computer build = new Computer(description, price, 1, null, customer, cpu, gpu, mobo, pcCase, fan);
+
+    build.setCreatedAt(LocalDateTime.now());
+
+    computerService.createComputer(build);
+
+    return "Build saved successfully!";
+}
+
+
 }

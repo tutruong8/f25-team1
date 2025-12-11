@@ -102,6 +102,8 @@
 .top-cards .card {
     cursor: pointer;
     transition: transform 0.2s;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .top-cards .card:hover {
@@ -112,3 +114,45 @@
 .search-section {
     margin: 2rem 0;
 }
+
+/* Hero size */
+.hero-small .hero-body {
+  padding-top: 11rem;
+  padding-bottom: 11rem;
+}
+
+/* Image for hero */
+.hero-with-bg {
+  position: relative;
+  overflow: hidden; /* Ensures image doesn't spill outside */
+}
+
+/* Background overlay image */
+.hero-with-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/DreamBuild_Logo.png'); /* <-- img path */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%; /* Adjust size (40–80% works well) */
+  opacity: 0.30; /* Controls how faded it looks */
+  pointer-events: none; /* Keeps hero text clickable */
+}
+
+.builder-row {
+  border-left: 4px solid #3273dc; /* Bulma link color */
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+.builder-row:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
+}
+
+#summaryList li {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+

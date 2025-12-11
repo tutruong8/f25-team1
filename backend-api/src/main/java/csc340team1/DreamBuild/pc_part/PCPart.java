@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
+
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -46,6 +48,9 @@ public class PCPart {
     private List<Customer> customers = new ArrayList<>();
 
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("customer")
+    private List<Customer> customersList = new ArrayList<>(); 
 
     //Constructors
     public PCPart() {}
@@ -96,4 +101,8 @@ public class PCPart {
     //Customer
     public List<Customer> getCustomers() { return customers; }
     public void setCustomers(List<Customer> customers) { this.customers = customers; }
+}
+    //Customers List
+    public List<Customer> getCustomersList() { return customersList; }
+    public void setCustomersList(List<Customer> customersList) { this.customersList = customersList; }
 }

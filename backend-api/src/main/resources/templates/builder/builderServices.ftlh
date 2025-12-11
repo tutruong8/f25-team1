@@ -86,7 +86,7 @@
     <h1 class="title">
       DIY Computer Parts
     </h1>
-    <a href="builderNewPart.html" class="button">
+    <a href="/pcpart/new?builderId=${builder.id}" class="button">
       Add Computer Part
     </a>
 
@@ -101,20 +101,14 @@
   </header>
   <div class="card-content">
     <div class="content">
-      <div class="columns">
-        <div class="column">Product
-
+      <#list builder.parts as p>
+        <div class="columns">
+          <div class="column">${p.name}</div>
+          <div class="column">$${p.price}</div>
+          <div class="column">${p.quantity!0}</div>
+          <div class="column">${p.type}</div>
         </div>
-        <div class="column">Price
-
-        </div>
-        <div class="column">Quantity
-
-        </div>
-        <div class="column">Type
-
-        </div>    
-      </div>
+      </#list>
     </div>
     <footer class="card-footer">
       <a href="builderNewPart.html" class="card-footer-item">Edit</a>

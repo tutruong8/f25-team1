@@ -8,5 +8,6 @@ public enum PCPartType {
     CASE,
     PSU,
     MOTHERBOARD,
-    COOLING
+    FANS,
+    COOLER
 }

@@ -42,20 +42,6 @@
     </div>
   </nav>
 
-  <!-- Sidebar -->
-  <div class="sidebar is-primary" id="sidebar">
-    <aside class="menu">
-      <p class="menu-label">Navigation</p>
-      <ul class="menu-list">
-        <li><a href="/customer/${customer.customerId}/reviews">Reviews</a></li>
-      </ul>
-      <p class="menu-label">Other</p>
-      <ul class="menu-list">
-        <li><a href="/customer/${customer.customerId}">Account</a></li>
-      </ul>
-    </aside>
-  </div>
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <!-- Hero Section -->
   <section class="hero is-dark hero-small hero-with-bg">
@@ -81,21 +67,6 @@
     </div>
   </section>
 
-<script>
-// Sidebar toggle
-const sidebar = document.getElementById('sidebar');
-const sidebarToggle = document.getElementById('sidebarToggle');
-const overlay = document.getElementById('sidebarOverlay');
-
-sidebarToggle.addEventListener('click', () => {
-  sidebar.classList.toggle('is-active');
-  overlay.classList.toggle('is-active');
-});
-overlay.addEventListener('click', () => {
-  sidebar.classList.remove('is-active');
-  overlay.classList.remove('is-active');
-});
-</script>
 
 </body>
 

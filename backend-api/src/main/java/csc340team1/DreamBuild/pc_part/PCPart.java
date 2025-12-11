@@ -42,9 +42,9 @@ public class PCPart {
     @JsonIgnore
     private Builder builder;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("customer")
-    private List<Customer> customersList = new ArrayList<>(); 
+    @ManyToMany(mappedBy = "purchasedParts", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("purchasedParts")
+    private List<Customer> customers = new ArrayList<>(); 
 
     //Constructors
     public PCPart() {}
@@ -92,6 +92,8 @@ public class PCPart {
     public void setBuilder(Builder builder) { this.builder = builder; }
 
     //Customers List
-    public List<Customer> getCustomersList() { return customersList; }
-    public void setCustomersList(List<Customer> customersList) { this.customersList = customersList; }
+    public List<Customer> getCustomers() { return customers; }
+    public void setCustomers(List<Customer> customers) { this.customers = customers; }
+    public int getCustomerCount() { return customers.size(); }
+    
 }

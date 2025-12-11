@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -147,4 +145,8 @@ public class PCPart {
     }
 
 
+    //Customer
+    public List<Customer> getCustomers() { return customers; }
+    public void setCustomers(List<Customer> customers) { this.customers = customers; }
+    public int customerCount() { return customers.size(); }
 }

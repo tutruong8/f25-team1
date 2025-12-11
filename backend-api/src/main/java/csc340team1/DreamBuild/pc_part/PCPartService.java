@@ -78,13 +78,6 @@ public class PCPartService {
             part.setPrice(updatedPart.getPrice());
             part.setQuantity(updatedPart.getQuantity());
             part.setBuilder(updatedPart.getBuilder());
-            part.setSocket(updatedPart.getSocket());
-            part.setRamType(updatedPart.getRamType());
-            part.setFormFactor(updatedPart.getFormFactor());
-            part.setWattage(updatedPart.getWattage());
-            part.setRequiredWatt(updatedPart.getRequiredWatt());
-            part.setGpuLength(updatedPart.getGpuLength());
-            part.setGpuMaxLength(updatedPart.getGpuMaxLength());
 
             return pcPartRepo.save(part);
         }).orElseGet(() -> {

@@ -31,9 +31,6 @@
       <a class="navbar-item is-active" href="/builder/${builder.id}/services">
         Services
       </a>
-      <a class="navbar-item" href="/builder/${builder.id}/customer-statistics">
-        Customer Statistics
-      </a>
       <a class="navbar-item" href="/builder/${builder.id}/reviews">
         Your Reviews
       </a>
@@ -41,94 +38,73 @@
   </div>
 </nav>
 
-
-<div class="columns">
-  <div class="column">
-    <h1 class="title">
-      Prebuilts
-    </h1>
-    <a href="builderNewPrebuilt.html" class="button">
-      Add Prebuilt
-    </a>
-    <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img
-        src="/images/placeholder thing.jpg"
-        alt="Placeholder image"
-      />
-    </figure>
-  </div>
-  <div class="card-content">
-    <div class="media">
-      <div class="media-content">
-        <p class="title is-4">Travis Tú Trương's Linux PC</p>
-        <p class="subtitle is-5">$850</p>
-      </div>
-    </div>
-
-    <div class="content">
-      This is a placeholder, functionality will come soon!
-      <br />
-    
-
-    </div>
-    <footer class="card-footer">
-      <a href="builderNewPrebuilt.html" class="card-footer-item">Edit</a>
-      <a href="#" class="card-footer-item">Delete</a>
-    </footer>
-  </div>
-</div>
-
-  </div>
-  
-  <div class="column">
-    <h1 class="title">
-      DIY Computer Parts
-    </h1>
     <a href="/pcpart/new?builderId=${builder.id}" class="button">
       Add Computer Part
     </a>
 
-<div class="card">
-  <header class="card-header">
-    <p class="card-header-title">Parts</p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </header>
-  <div class="card-content">
-    <div class="content">
-      <div class="columns">
-          <div class="column">Name</div>
-          <div class="column">Price</div>
-          <div class="column">Quantity</div>
-          <div class="column">Type</div>
-          <div class="column">Description</div>
-          <div class="column is-narrow"></div>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">Parts</p>
+        <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+      <div class="card-content">
+        <div class="content">
+          <div class="columns">
+            <div class="column">Name</div>
+            <div class="column">Price</div>
+            <div class="column">Quantity</div>
+            <div class="column">Type</div>
+            <div class="column">Description</div>
+            <div class="column">Customer Statistics (No. Saved/Customers)</div>
+            <div class="column is-narrow"></div>
+          </div>
+          <#list builder.parts as p>
+            <div class="columns">
+              <div class="column">${p.name}</div>
+              <div class="column">$${p.price}</div>
+              <div class="column">${p.quantity!0}</div>
+              <div class="column">${p.partType}</div>
+              <div class="column">${p.description}</div>
+              <div class="column">
+                ${p.customerCount()?c}
+                <div class="dropdown is-hoverable is-right">
+                  <div class="dropdown-trigger">
+                    <button class="button is-small" aria-haspopup="true" aria-controls="dropdown-menu">
+                      <span>Details</span>
+                      <span class="icon is-small">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content">
+                      <#if p.customers?size == 0>
+                        <div class="dropdown-item">No customers yet</div>
+                          <#else>
+                          <#list p.customers as c>
+                            <div class="dropdown-item">
+                                ${c.name}
+                            </div>
+                          </#list>
+                      </#if>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="column is-narrow">
+                <a class="button is-small is-info" 
+                  href="/pcpart/${p.id}/edit?builderId=${builder.id}">
+                  Edit
+                </a>
+              </div>
+            </div>
+          </#list>
+        </div>
       </div>
-      <#list builder.parts as p>
-        <div class="columns">
-          <div class="column">${p.name}</div>
-          <div class="column">$${p.price}</div>
-          <div class="column">${p.quantity!0}</div>
-          <div class="column">${p.partType}</div>
-          <div class="column">${p.description}</div>
-          <div class="column is-narrow">
-            <a class="button is-small is-info" 
-               href="/pcpart/${p.id}/edit?builderId=${builder.id}">
-               Edit
-            </a>
-        </div>
-        </div>
-      </#list>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 

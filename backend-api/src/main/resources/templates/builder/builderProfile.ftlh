@@ -72,7 +72,7 @@
   Log Out
 </a>
 
-<button class="button">Delete Account</button>
+<a href="/builder/delete/${builder.id}" class="btn btn-danger">Delete</a>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 

@@ -124,9 +124,10 @@ public class PCPartController {
    * @param id ID of the PC part to delete
    * @return list of PC parts in database after deletion
    */
-    @DeleteMapping("/pcpart/{id}")
-    public void deletePart(@PathVariable Long id) {
+    @GetMapping("/pcpart/delete/{id}")
+    public Object deletePart(@PathVariable Long id , @RequestParam Long builderId) {
         pcPartService.deletePart(id);
+        return "redirect:/builder/" + builderId + "/services";
     }
 
     /**

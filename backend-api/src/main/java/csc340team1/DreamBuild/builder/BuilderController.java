@@ -151,7 +151,7 @@ public class BuilderController {
     @GetMapping("/builder/delete/{id}")
     public Object deleteBuilder(@PathVariable Long id) {
         builderService.deleteBuilder(id);
-        return "redirect:/builder";
+        return "redirect:/builder/existing";
     }
 
     /**

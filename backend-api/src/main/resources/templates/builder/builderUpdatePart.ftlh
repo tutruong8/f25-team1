@@ -82,8 +82,8 @@
   <div class="field">
     <button class="button is-warning">Save Changes</button>
   </div>
+  <a href="/pcpart/delete/${part.id}?builderId=${builder.id}" class="btn btn-danger">Delete</a>
 </form>
-
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {

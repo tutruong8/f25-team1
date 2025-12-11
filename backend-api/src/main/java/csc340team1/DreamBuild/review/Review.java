@@ -19,6 +19,9 @@ public class Review {
     @Column(nullable = false)
     private String comment;
 
+    @Column(nullable = true)
+    private String reply;
+
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -28,7 +31,7 @@ public class Review {
     private Builder builder;
 
     @ManyToOne
-    @JoinColumn(name = "computer_id", nullable = false)
+    @JoinColumn(name = "computer_id", nullable = true)
     @JsonIgnoreProperties("reviews")
     private Computer computer;
 
@@ -40,12 +43,14 @@ public class Review {
     //Constructors
     public Review() {}
 
-    public Review(int rating, String comment, Builder builder, Customer customer, Computer computer) {
+    public Review(int rating, String comment, String reply, Builder builder, Customer customer, Computer computer, LocalDateTime createdAt) {
         this.rating = rating;
         this.comment = comment;
+        this.reply = reply;
         this.builder = builder;
         this.customer = customer;
         this.computer = computer;
+        this.createdAt = createdAt;
     }
 
     //Getters and Setters
@@ -61,6 +66,10 @@ public class Review {
     public String getComment() { return comment; }
     public void setComment(String comment) { this.comment = comment; }
 
+    //Reply
+    public String getReply() { return reply; }
+    public void setReply(String reply) { this.reply = reply; }
+
     //Time created
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
@@ -75,5 +84,5 @@ public class Review {
 
     //Computer
     public Computer getComputer() { return computer; }
-    public void setComputer(Computer computer) { this.computer = computer;}
+    public void setComputer(Computer computer) { this.computer = computer; }
 }

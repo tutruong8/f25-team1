@@ -12,7 +12,7 @@ Table of Contents
 * 2 [Use Cases](#2-use-cases)
   * 2.1 [Use Case Model](#21-use-case-model)
   * 2.2 [Use Case Descriptions](#22-use-case-descriptions)
-    * 2.2.1 [Actor: Builder](#221-actor-farmer)
+    * 2.2.1 [Actor: Provider](#221-actor-farmer)
     * 2.2.2 [Actor: Customer](#222-actor-customer) 
 * 3 [UML Class Diagram](#3-uml-class-diagram)
 * 4 [Database Schema](#4-database-schema)
@@ -21,7 +21,7 @@ Table of Contents
 | Name | Date    | Reason For Changes  | Version   |
 | ---- | ------- | ------------------- | --------- |
 |  Al  |10/8     | Initial Design      |    1      |
-|      |         |                     |           |
+|      |12/11    | New goal            |    2      |
 |      |         |                     |           |
 
 ## 1. Product Overview
@@ -33,19 +33,17 @@ DreamBuild is a web-based app that allows customers to access prebuilt computers
 
 ### 2.2 Use Case Descriptions
 
-#### 2.2.1 Actor: Builder
+#### 2.2.1 Actor: Provider
 ##### 2.2.1.1 Sign Up
-A builder can sign up to create their profile with their name, email, password, and phone number. Emails must be unique.
+A Provider can sign up to create their profile with their name, email, password, and phone number. Emails must be unique.
 ##### 2.2.1.2 Log In
-A builder shall be able to sign in using their registered email and password. After logging in, the farmer shall be directed their dashboard where they see an overview of their provided Prebuilt computers, PC parts, and stats.
+A Provider shall be able to sign in using their registered email and password. After logging in, the farmer shall be directed their dashboard where they see an overview of their provided PC parts, and stats.
 ##### 2.2.1.3 Update Profile
-A builder shall be to modify their profile by going to their profile page. They can change their email, password, and address.
-##### 2.2.1.4 Create Prebuilts
-The builder shall be able to create a listing for a Prebuilt Computer. They would provide the CPU, GPU, RAM, Storage(s), Cooling Components such as PC Fans and CPU Cooler, description, and price. This prebuilt will be created to be associated with only this builder.
+A Provider shall be to modify their profile by going to their profile page. They can change their email, password, and address.
 ##### 2.2.1.5 List Computer Parts for DIY
-The builder shall be able to create a listing for computer parts for customers that would like to build their own computer instead or want the builder to build it but want full control on what's in it.. They would provide component listings for CPU, GPU, RAM, Storage(s), and Cooling Components such as PC Fans and CPU Cooler. These parts would have a name, description, and price. Aditionally, builders should let the user know if there is any compatibility issues with chosen parts.
+The Provider shall be able to create a listing for computer parts for customers that would like to build their own computer. They would provide component listings for CPU, GPU, RAM, Storage(s), and Cooling Components such as PC Fans and CPU Cooler. These parts would have a name, description, and price.
 ##### 2.2.1.6 View Customer Stats and Reviews
-A builder will be able to view the amount of views a prebuilt computer or a certain pc part has or one that is most bought. Additionally, the builder shall be able to view and reply to reviews.
+A Provider will be able to view the amount of how many people saved a certain pc part. Additionally, the Provider shall be able to view and reply to reviews.
 
 #### 2.2.2 Actor: Customer
 ##### 2.2.2.1 Sign Up

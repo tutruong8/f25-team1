@@ -1,15 +1,12 @@
 package csc340team1.DreamBuild.builder;
 
 import java.util.*;
-
-import org.springframework.boot.autoconfigure.info.ProjectInfoProperties.Build;
-
 import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import csc340team1.DreamBuild.pc_part.PCPart;
 import csc340team1.DreamBuild.computerbuild.Computer;
+import csc340team1.DreamBuild.pc_part.PCPart;
 import csc340team1.DreamBuild.review.Review;
 
 @Entity

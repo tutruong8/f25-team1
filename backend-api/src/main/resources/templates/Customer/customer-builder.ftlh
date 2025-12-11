@@ -43,21 +43,7 @@
     </div>
   </nav>
 
-  <!-- Sidebar -->
-  <div class="sidebar is-primary" id="sidebar">
-    <aside class="menu">
-      <p class="menu-label">Navigation</p>
-      <ul class="menu-list">
-        <li><a href="customerLanding.html">Home</a></li>
-        <li><a href="customerReviews.html">Reviews</a></li>
-      </ul>
-      <p class="menu-label">Other</p>
-      <ul class="menu-list">
-        <li><a href="customerProfile.html">Account</a></li>
-      </ul>
-    </aside>
-  </div>
-  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  
   <!-- Navbar End -->
 
 <!-- PC Builder Section -->
@@ -349,19 +335,6 @@
 
 const CUSTOMER_ID = "${customer.customerId!0}";
 
-// Sidebar toggle
-const sidebar = document.getElementById('sidebar');
-const sidebarToggle = document.getElementById('sidebarToggle');
-const overlay = document.getElementById('sidebarOverlay');
-
-sidebarToggle.addEventListener('click', () => {
-  sidebar.classList.toggle('is-active');
-  overlay.classList.toggle('is-active');
-});
-overlay.addEventListener('click', () => {
-  sidebar.classList.remove('is-active');
-  overlay.classList.remove('is-active');
-});
 
 
 //LOGIC

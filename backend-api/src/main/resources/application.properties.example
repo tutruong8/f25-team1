@@ -1,0 +1,5 @@
+spring.application.name=DreamBuild
+spring.datasource.url=jdbc:postgresql://<your-neon-host>/<your-db-name>?sslmode=require
+spring.datasource.username=<your-db-username>
+spring.datasource.password=<your-db-password>
+spring.jpa.hibernate.ddl-auto=update

@@ -49,12 +49,12 @@ Client-oriented requirements describe the system from the client’s perspective
 Developer-oriented requirements describe the system from a software developer’s perspective. These requirements include a detailed description of functional, data, performance, and other important requirements.
 
 ### 1.2 Product Scope
-The purpose of the DreamBuild system is to create a way for a customer to easily build their own laptop or desktop with any parts of and specs of their choosing, as well as for the builder to have a convient way to reach their customer base, manage their stock and follow the criteria that the customer wished for. The system is a web-based application to simplify its subscrption and product management functions. We will have an application to become provider for this site and get the product to the consumer at a timely manner. Above all, we hope to provide a comfortable user experience along with the best offerings available.
+The purpose of the DreamBuild system is to create a way for a customer to easily build their own laptop or desktop with any parts of and specs of their choosing, as well as for the builder to have a convienient way to reach their customer base, manage their stock and follow the criteria that the customer wished for. The system is a web-based application to simplify its subscription and product management functions. We will have an application to become provider for this site and get the product to the consumer at a timely manner. Above all, we hope to provide a comfortable user experience along with the best offerings available.
 
 ### 1.3 Definitions, Acronyms and Abbreviations                                                                                                                             
 | Reference   | Definition |
 |-------------|------------|
-| **Java**        | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for LocalHarvest Hub |
+| **Java**        | A programming language originally developed by James Gosling at Sun Microsystems. We will be using this language to build the backend service for DreamBuild |
 | **PostgreSQL**  | Open-source relational database management system. |
 | **SpringBoot**  | An open-source Java-based framework used to create a microservice. This will be used to create and run our application. |
 | **Spring MVC**  | Model-View-Controller. This is the architectural pattern that will be used to implement our system. |
@@ -98,10 +98,10 @@ Java will be used and the app will depend on Spring and Spring Boot. The app wil
 - The customer will be able to rate and review the product and service.
 - Be verifiable (e.g., the requirement realization can be proven to the customer's satisfaction)
 - Conform to agreed upon syntax, keywords, and terms.
-- The Provider shall be able to be registered to the app via a registration form. Additionally, a builder can modify this profile. Lastly, the builder can remove themself from the from the server if needed.
+- The Provider shall be able to be registered to the app via a registration form. Additionally, a builder can modify this profile. Lastly, the builder can remove themself from the server if needed.
 - The Provider shall let customers pick from PC Parts that they provide 
-- The Provider shall also be able to contact customers in case the customer has any questions or concerns. Additionally, the builder should be able to manage the inventory of computer parts in stock. Lastly, the Provider should also be able to give a option if for the chosen parts that the customer picked for if they want to build the PC themselves or if the builder builds it for a extra service charge.
-- The Provider shall be able to view the statisitcs of what customers prefer and of what parts are more commonly selected when users want to build the PC or machine themselves.
+- The Provider shall also be able to contact customers in case the customer has any questions or concerns. Additionally, the builder should be able to manage the inventory of computer parts in stock. Lastly, the Provider should also be able to give a option for the chosen parts that the customer picked for if they want to build the PC themselves or if the builder builds it for a extra service charge.
+- The Provider shall be able to view the statisitics of what customers prefer and of what parts are more commonly selected when users want to build the PC or machine themselves.
 - The Provider shall be able to respond to a customer's review if a customer leaves either a positive or negative review.
 
 #### 3.1.1 User interfaces

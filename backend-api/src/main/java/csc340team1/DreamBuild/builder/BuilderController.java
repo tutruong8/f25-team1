@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import java.util.List;
+import csc340team1.DreamBuild.review.*;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,9 @@ import org.springframework.ui.Model;
 public class BuilderController {
     @Autowired
     private BuilderService builderService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     /**
    * Endpoint to get all builders in the database
@@ -64,7 +68,13 @@ public class BuilderController {
    */
     @GetMapping("/builder/{id}/reviews")
     public Object getBuilderReviews(@PathVariable long id, Model model) {
-        model.addAttribute("builder", builderService.getBuilderById(id));
+        Builder builder = builderService.getBuilderById(id);
+        List<Review> reviews = reviewService.getReviewByBuilder(id);
+
+        model.addAttribute("builder", builder);
+        model.addAttribute("reviews", reviews);
+        model.addAttribute("builderId", id);
+
         model.addAttribute("title", "Builder Reviews");
         return "builder/builderReviews";
     }

@@ -46,7 +46,7 @@
     <div class="select">
       <select name="partType">
       <#list partTypes as t>
-          <option value="${t}">${t}</option>
+          <option value="${t}"<#if t?string == part.partType!""> selected</#if>>${t}</option>
       </#list>
       </select>
     </div>

@@ -67,6 +67,9 @@ public class PCPartController {
     @GetMapping("/pcpart/new")
     public Object newPartForm(@RequestParam Long builderId, Model model) {
         Builder builder = builderService.getBuilderById(builderId);
+        if (builder == null) {
+            return "redirect:/builder/existing";
+        }
 
         model.addAttribute("builder", builder);
         model.addAttribute("builderId", builderId);
@@ -94,6 +97,9 @@ public class PCPartController {
     @GetMapping("/pcpart/{id}/edit")
     public Object editPartForm(@PathVariable Long id, @RequestParam Long builderId, Model model) {
         Builder builder = builderService.getBuilderById(builderId);
+        if (builder == null) {
+            return "redirect:/builder/existing";
+        }
 
         model.addAttribute("builder", builder);     
         model.addAttribute("builderId", builderId);

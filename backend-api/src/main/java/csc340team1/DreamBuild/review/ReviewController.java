@@ -25,23 +25,18 @@ public class ReviewController {
     private ReviewService reviewService;
 
     /**
-     * Customer review page (list of reviews for a customer)
-     */
-    @GetMapping("/customer/{customerId}/reviews")
-    public String showCustomerReviews(@PathVariable Long customerId, Model model) {
-        List<Review> reviews = reviewService.getReviewByCustomerId(customerId);
-        model.addAttribute("reviews", reviews);
-        model.addAttribute("customerId", customerId);
-        return "customer/customerReview";
-    }
-
-    /**
      * Reply to certain review
      */
     @GetMapping("/builder/{builderId}/reviews/{reviewId}/reply")
     public String showBuilderReviewReplyForm(@PathVariable Long builderId, @PathVariable Long reviewId, Model model) {
         Builder builder = builderService.getBuilderById(builderId);
+        if (builder == null) {
+            return "redirect:/builder/existing";
+        }
         Review review = reviewService.getReviewById(reviewId).orElse(null);
+        if (review == null) {
+            return "redirect:/builder/" + builderId + "/reviews";
+        }
 
         model.addAttribute("builder", builder);
         model.addAttribute("review", review);
@@ -54,10 +49,13 @@ public class ReviewController {
      * Single review details page
      */
     @GetMapping("/review/{reviewId}")
-    public String getReviewDetails(Long reviewId, Model model) {
+    public String getReviewDetails(@PathVariable Long reviewId, Model model) {
         Optional<Review> review = reviewService.getReviewById(reviewId);
-        model.addAttribute("review", review.orElse(null));
-        return "review/review-details";
+        if (review.isEmpty()) {
+            return "redirect:/builder/existing";
+        }
+        model.addAttribute("review", review.get());
+        return "reviews/review-details";
     }
 
     /**

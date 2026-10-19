@@ -41,7 +41,11 @@ public class BuilderController {
    */
     @GetMapping("/builder/{id}")
     public Object getBuilderById(@PathVariable long id, Model model) {
-        model.addAttribute("builder", builderService.getBuilderById(id));
+        Builder builder = builderService.getBuilderById(id);
+        if (builder == null) {
+            return "redirect:/builder/existing";
+        }
+        model.addAttribute("builder", builder);
         model.addAttribute("title", "Builder Details");
         return "builder/builderProfile";
     }
@@ -55,7 +59,11 @@ public class BuilderController {
    */
     @GetMapping("/builder/{id}/services")
     public Object getBuilderServices(@PathVariable long id, Model model) {
-        model.addAttribute("builder", builderService.getBuilderById(id));
+        Builder builder = builderService.getBuilderById(id);
+        if (builder == null) {
+            return "redirect:/builder/existing";
+        }
+        model.addAttribute("builder", builder);
         model.addAttribute("title", "Builder Services");
         return "builder/builderServices";
     }
@@ -69,6 +77,9 @@ public class BuilderController {
     @GetMapping("/builder/{id}/reviews")
     public Object getBuilderReviews(@PathVariable long id, Model model) {
         Builder builder = builderService.getBuilderById(id);
+        if (builder == null) {
+            return "redirect:/builder/existing";
+        }
         List<Review> reviews = reviewService.getReviewByBuilder(id);
 
         model.addAttribute("builder", builder);
@@ -80,16 +91,13 @@ public class BuilderController {
     }
 
     /**
-   * Endpoint to get to see customer statistics of services of a builder through ID
-   * @param id ID of the builder to get
-   * @param model Model to add attributes to
-   * @return Builder review page
+   * Endpoint for customer statistics of a builder's services. The statistics are shown on the services page.
+   * @param id ID of the builder
+   * @return redirect to the builder services page
    */
     @GetMapping("/builder/{id}/customer-statistics")
-    public Object getBuilderCustomerStatistics(@PathVariable long id, Model model) {
-        model.addAttribute("builder", builderService.getBuilderById(id));
-        model.addAttribute("title", "Builder Customer Statistics");
-        return "builder/statistics";
+    public Object getBuilderCustomerStatistics(@PathVariable long id) {
+        return "redirect:/builder/" + id + "/services";
     }
 
 

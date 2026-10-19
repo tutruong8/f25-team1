@@ -112,8 +112,9 @@ public class BuilderController {
    * @return Builder signup page
    */
     @GetMapping("/builder/existing")
-    public Object builderLogin(Model model){
+    public Object builderLogin(@RequestParam(required = false) String error, Model model){
         model.addAttribute("title", "Log In Builder");
+        model.addAttribute("loginError", error != null);
         return "ProviderLogin";
     }
 
@@ -137,7 +138,7 @@ public class BuilderController {
             session.setAttribute("builderId", builder.getId());
             return "redirect:/builder/" + builder.getId() + "/services";
         } catch (Exception e) {
-            return "redirect:/builder/signin?error";
+            return "redirect:/builder/existing?error";
         }
     }
 

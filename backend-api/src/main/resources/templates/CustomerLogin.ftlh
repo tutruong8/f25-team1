@@ -16,6 +16,9 @@
                     <div class="column is-4-desktop">
                         <div class="box">
                             <h1 class="title has-text-centered">Customer Login</h1>
+                            <#if loginError!false>
+                                <div class="notification is-danger is-light">Incorrect email or password</div>
+                            </#if>
                             <form id="existing-customer" action="/customer/signin" method="post">
                                 <div class="field">
                                     <label class="label">Email</label>

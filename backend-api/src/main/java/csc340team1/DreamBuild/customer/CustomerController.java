@@ -100,8 +100,9 @@ public String customerBuilds(@PathVariable Long id, Model model) {
    * @return Customer signup page
    */
   @GetMapping("/customer/existing")
-  public Object customerLogin(Model model) {
+  public Object customerLogin(@RequestParam(required = false) String error, Model model) {
     model.addAttribute("title", "Log in Customer");
+    model.addAttribute("loginError", error != null);
     return "CustomerLogin";
   }
   

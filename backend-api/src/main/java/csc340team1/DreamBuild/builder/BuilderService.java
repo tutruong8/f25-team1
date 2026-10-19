@@ -5,6 +5,7 @@ import java.io.File;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -13,6 +14,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class BuilderService {
     @Autowired
     private BuilderRepo builderRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     /**
    * Method to get all builders in the database
@@ -46,24 +50,32 @@ public class BuilderService {
    * @return created builder
    */
     public Builder createBuilder(Builder builder) {
+        builder.setPassword(passwordEncoder.encode(builder.getPassword()));
         return builderRepo.save(builder);
     }
 
     /**
    * Method to update builder in the database
    * @param id ID of the builder to update
-   * @param updatedBuilder updated builder information
+   * @param updatedBuilder updated builder information (a blank password keeps the current one)
    * @return updated builder
    */
     public Builder updateBuilder(Long id, Builder updatedBuilder) {
+        String newPassword = updatedBuilder.getPassword();
+        boolean passwordChanged = newPassword != null && !newPassword.isBlank();
         return builderRepo.findById(id).map(builder -> {
             builder.setName(updatedBuilder.getName());
             builder.setEmail(updatedBuilder.getEmail());
-            builder.setPassword(updatedBuilder.getPassword());
+            if (passwordChanged) {
+                builder.setPassword(passwordEncoder.encode(newPassword));
+            }
             builder.setAddress(updatedBuilder.getAddress());
             return builderRepo.save(builder);
         }).orElseGet(() -> {
             updatedBuilder.setId(id);
+            if (passwordChanged) {
+                updatedBuilder.setPassword(passwordEncoder.encode(newPassword));
+            }
             return builderRepo.save(updatedBuilder);
         });
     }
@@ -82,7 +94,7 @@ public class BuilderService {
     public Builder authenticate(String email, String password) {
         Builder builder = builderRepo.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("Builder not found with the email you just typed! Try again."));
-        if (!builder.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, builder.getPassword())) {
             throw new IllegalArgumentException("Invalid email or password! Try again.");
         }
         return builder;

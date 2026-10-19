@@ -6,6 +6,7 @@ import java.io.File;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,6 +15,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CustomerService {
     @Autowired
     private CustomerRepo customerRepo;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
      /**
    * Method to get all customers in the database
@@ -48,25 +52,33 @@ public class CustomerService {
    * @return created customer
    */
     public Customer createCustomer(Customer customer) {
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         return customerRepo.save(customer);
     }
 
     /**
    * Method to update customer in the database
    * @param id ID of the customer to update
-   * @param updatedCustomer updated customer information
+   * @param updatedCustomer updated customer information (a blank password keeps the current one)
    * @return updated customer
    */
-    
+
     public Customer updateCustomer(Long id, Customer updatedCustomer) {
+        String newPassword = updatedCustomer.getPassword();
+        boolean passwordChanged = newPassword != null && !newPassword.isBlank();
         return customerRepo.findById(id).map(customer -> {
             customer.setName(updatedCustomer.getName());
             customer.setEmail(updatedCustomer.getEmail());
-            customer.setPassword(updatedCustomer.getPassword());
+            if (passwordChanged) {
+                customer.setPassword(passwordEncoder.encode(newPassword));
+            }
             customer.setAddress(updatedCustomer.getAddress());
             return customerRepo.save(customer);
         }).orElseGet(() -> {
             updatedCustomer.setCustomerId(id);
+            if (passwordChanged) {
+                updatedCustomer.setPassword(passwordEncoder.encode(newPassword));
+            }
             return customerRepo.save(updatedCustomer);
         });
     }
@@ -80,7 +92,7 @@ public class CustomerService {
      * */
     public Customer authenticate(String email, String password) {
         Customer customer = customerRepo.findByEmail(email).orElseThrow(() -> new EntityNotFoundException("Customer not found! Try again."));
-        if (!customer.getPassword().equals(password)) {
+        if (!passwordEncoder.matches(password, customer.getPassword())) {
             throw new IllegalArgumentException("Invalid email or password! Try again.");
         }
         return customer;

@@ -14,7 +14,7 @@
 ## App Functions
 1. Customer (the user with the customer role):
     1. Create/modify customer profile - register themselves as a custumer via a new login account through the account icon at the bottom left of the page.
-    2. View available services - Front page will have different catalogs of specs to browse as well as two buttons that will take customers to a diy builds sections in which they will browse any specs of thier choosing to build their dream laptops or PCs or the other taking them to recommended builds in which customers who are overwhelmed by the numerous choices in the diy section can narrow down their builds with their specific needs in mind.
+    2. View available services - Front page will have different catalogs of specs to browse as well as two buttons that will take customers to a diy builds sections in which they will browse any specs of their choosing to build their dream laptops or PCs or the other taking them to recommended builds in which customers who are overwhelmed by the numerous choices in the diy section can narrow down their builds with their specific needs in mind.
     3. Subscribe to available services - Access services and weekly newsletters.
     4. Write reviews for subscribed services - Review quality of product and delivery.
 2. Provider (the user with the provider role):

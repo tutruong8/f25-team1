@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css"
     >
-    <title>Builder's Statistics</title>
+    <title>Reviews</title>
 </head>
 
 <body>
